@@ -1,3 +1,4 @@
+/* Author: Jake Roemer */
 package graphAlgorithms;
 
 public class BreadthFirstSearch {
