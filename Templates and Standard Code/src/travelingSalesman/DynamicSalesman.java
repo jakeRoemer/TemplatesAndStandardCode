@@ -15,7 +15,7 @@ import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-public class Salesman {
+public class DynamicSalesman {
 	//path example -> {2,3,4} set containing the nodes 2, 3, and 4. A path between them exists
 	int pathLength; //keeps track of length of the path leading to this node
 	
@@ -34,15 +34,15 @@ public class Salesman {
 	
 	//Mapping of paths for each node
 	//Maps path to path data [ie. length of path, node path is leading to]
-	public HashMap<LinkedHashSet<Integer>, Salesman> path;
+	public HashMap<LinkedHashSet<Integer>, DynamicSalesman> path;
 
 	//For specifying paths vertices are part of 
-	public Salesman(int vertices) {
-		path = new HashMap<LinkedHashSet<Integer>, Salesman>();
+	public DynamicSalesman(int vertices) {
+		path = new HashMap<LinkedHashSet<Integer>, DynamicSalesman>();
 	}
 
 	//For specifying path data
-	public Salesman(int pathLength, int frontierVertex) {
+	public DynamicSalesman(int pathLength, int frontierVertex) {
 		this.pathLength = pathLength;
 		this.frontierVertex = frontierVertex;
 	}
@@ -54,9 +54,9 @@ public class Salesman {
 			Scanner in = new Scanner(file);
 			int vertices = in.nextInt();
 			edges = new LinkedList[vertices];
-			Salesman[] graph = new Salesman[vertices];
+			DynamicSalesman[] graph = new DynamicSalesman[vertices];
 			for (int i = 0; i < vertices; i++) {
-				graph[i] = new Salesman(vertices);
+				graph[i] = new DynamicSalesman(vertices);
 				edges[i] = new LinkedList<Integer>();
 				for (int j = 0; j < vertices; j++) {
 					if(j > i) {
@@ -72,7 +72,7 @@ public class Salesman {
 			//search for optimal tour
 			DynamicTS(graph);
 			//print permutation of tour and lenght of optimal tour
-			PrintWriter out = new PrintWriter("output.txt");
+			PrintWriter out = new PrintWriter("outputDynamicSalesman.txt");
 			LinkedHashSet<Integer> Set = new LinkedHashSet<Integer>();
 			for (int i = 1; i < vertices; i++) {
 				Set.add(i);
@@ -90,11 +90,11 @@ public class Salesman {
 	//DynamicTS(Salesman[] graph)
 	//INPUT: Salesman[] graph -> undirected, complete weighted graph. Keeps track of paths for each node
 	//OUTPUT: length of shortest Hamiltonian cycle of G is computed
-	public static void DynamicTS(Salesman[] graph) {
+	public static void DynamicTS(DynamicSalesman[] graph) {
 		//initialize path between nodes and starting node 0
 		int n = graph.length;
 		for (int i = 1; i < n; i++) {
-			graph[i].path.put(new LinkedHashSet<Integer>(), new Salesman(edges[0].get(i-1), -1));
+			graph[i].path.put(new LinkedHashSet<Integer>(), new DynamicSalesman(edges[0].get(i-1), -1));
 		}
 		//for each v in V
 		for (int i = 1; i < n; i++) {
@@ -126,7 +126,7 @@ public class Salesman {
 							}
 						}
 						//length(v,W) <- min{}
-						graph[k].path.put(Set, new Salesman(subsetLength,minVal));
+						graph[k].path.put(Set, new DynamicSalesman(subsetLength,minVal));
 					}
 				}
 				deleteSet.add(Set);
@@ -157,13 +157,13 @@ public class Salesman {
 		}
 		//length(s,V-{s})
 		graph[0].pathLength = subsetLength; // cheating, kind of, to print with less hassle
-		graph[0].path.put(Set, new Salesman(subsetLength, minVal));
+		graph[0].path.put(Set, new DynamicSalesman(subsetLength, minVal));
 	}
 
 	//generateSubSets(Salesman[] graph)
 	//INPUT: Salesman[] graph -> undirected, complete weighted graph. Keeps track of paths for each node
 	//OUTPUT: all possible useful subsets are generated
-	public static void generateSubSets(Salesman[] graph) {
+	public static void generateSubSets(DynamicSalesman[] graph) {
 		if (subSets == null) {
 			subSets = new LinkedHashSet<LinkedHashSet<Integer>>();
 		}
@@ -198,7 +198,7 @@ public class Salesman {
 	//	frontierVertex which starts with starting node 0. Salesman[] graph -> Salesman[] graph -> undirected, complete 
 	//	weighted graph. Keeps track of paths for each node
 	//OUTPUT: prints the permutation of the optimal tour to the output file
-	public static void getCycle(PrintWriter out, LinkedHashSet<Integer> Set, int vertex, Salesman[] graph) {
+	public static void getCycle(PrintWriter out, LinkedHashSet<Integer> Set, int vertex, DynamicSalesman[] graph) {
 		if (Set.isEmpty() || vertex == -1) {
 			out.println();
 		} else {

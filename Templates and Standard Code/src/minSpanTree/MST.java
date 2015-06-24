@@ -1,5 +1,7 @@
 package minSpanTree;
 
+import java.util.LinkedList;
+
 public class MST {
 	public int key;
 	public MST parent;
@@ -19,8 +21,8 @@ public class MST {
 		
 	}
 	
-	/*public static void MST_Prim(MST [] graph, MST root) {
-		root.key = 0;
+	public static void MST_Prim(LinkedList<Integer> [] graph, LinkedList<Integer> root) {
+		/*root.key = 0;
 		LinkedList<MST> queue = new LinkedList<MST>();
 		queue.add(root);
 		Salesman vertex;
@@ -32,6 +34,6 @@ public class MST {
 					graph[i].key = vertex.edges[i];
 				}
 			}
-		}
-	}*/
+		}*/
+	}
 }
