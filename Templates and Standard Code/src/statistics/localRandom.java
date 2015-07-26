@@ -17,14 +17,33 @@ public class localRandom {
 	//No difference between local random and java library random after 1B iterations
 	//TODO: More concrete statistical analysis [Pearson's Chi-squared test]
 	public static void main (String [] args) {
-		Random rand = new Random(System.currentTimeMillis());
-		localRandom localRand = new localRandom(System.currentTimeMillis());
 		System.out.println("begin");
-		for (int i = 0; i < 1000000000; i++) {
-			if (rand.nextInt(1073741824) != localRand.nextInt(1073741824)) {
-				System.out.println("differs");
+		for (int j = 0; j < 100; j++) {
+			long num = System.currentTimeMillis();
+			Random rand = new Random(num);
+			localRandom localRand = new localRandom(num);
+			Random rand2 = new Random(num);
+			int [] chiLocalTest = new int [10000000];
+			int [] chiTest = new int [10000000];
+			int [] rand2Test = new int [10000000];
+			int range = 10;
+			for (int i = 0; i < chiTest.length; i++) {
+				chiLocalTest[i] = localRand.nextInt(range);
+				chiTest[i] = rand.nextInt(range);
+				rand2Test[i] = rand2.nextInt(range);
+				if (chiTest[i] != chiLocalTest[i]) {
+					System.out.println("rand1 differs local");
+				}
+				if (rand2Test[i] != chiLocalTest[i]) {
+					System.out.println("rand2 differs local");
+				}
+				if (chiTest[i] != rand2Test[i]) {
+					System.out.println("rand1 differs rand2");
+				}
 			}
 		}
+		//System.out.println("chi local test: " + chiSquaredTest.testing(chiLocalTest, chiLocalTest.length, range));
+		//System.out.println("chi test: " + chiSquaredTest.testing(chiTest, chiTest.length, range));
 		System.out.println("end");
 	}
 
