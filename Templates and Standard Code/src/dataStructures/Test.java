@@ -51,6 +51,11 @@ public class Test {
 		}
 		System.out.println("javaList: " + javaList.toString());
 		System.out.println("localList: " + localList.toString());
-		
+		javaList.add(375);
+		localList.add(375);
+		javaList.add(895);
+		localList.add(895);
+		javaList.remove(895);
+		localList.remove(895);
 	}
 }
