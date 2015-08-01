@@ -4,41 +4,45 @@ import java.util.Random;
 
 public class InsertionSort {
 	public static void main(String [] args) {
-		int [] arrayToSort = new int[5];
-		int domain = 100;
-		generateArray(arrayToSort, domain);
-		System.out.print("Before: ");
-		printArray(arrayToSort);
-		inSort(arrayToSort);
-		System.out.print("After: ");
-		printArray(arrayToSort);
-	}
-	
-	public static void printArray(int [] arrayToSort) {
-		for (int i = 0; i < arrayToSort.length; i++) {
-			System.out.print(arrayToSort[i] + " ");
+		int [] totalSyncCount = new int[5];
+		insertSort(totalSyncCount);
+		for (int i = 0; i < totalSyncCount.length; i++) {
+			System.out.println(totalSyncCount[i]);
 		}
-		System.out.println();
 	}
 	
-	public static void generateArray(int [] arrayToSort, int domain) {
+	//creates new numbers to insert into array while keeping the array sorted [smallest to largest]
+	public static void insertSort(int [] totalSyncCount) {
+		int val;
 		Random rand = new Random(System.currentTimeMillis());
-		for (int i = 0; i < arrayToSort.length; i++) {
-			arrayToSort[i] = rand.nextInt(domain)+1;
-		}
+	    for (int k = 0; k < totalSyncCount.length; k++) {
+	      //can not switch on zero acquire
+	      val = rand.nextInt(100)+1;
+	      for (int i = totalSyncCount.length-1; i >= 0; i--) {
+				if (val >= totalSyncCount[i]) {
+					for (int j = 1; j <= i; j++) {
+						int temp = totalSyncCount[j];
+						totalSyncCount[j] =  totalSyncCount[j-1];
+						totalSyncCount[j-1] = temp;
+					}
+					totalSyncCount[i] = val;
+					break;
+				}
+			}
+	    }
 	}
 	
-	//sorts in place. input is a filled array that needs to be sorted
-	public static void inSort(int [] arrayToSort) {
-		int switchNum, j;
-		for (int i = 1; i < arrayToSort.length; i++) {
-			switchNum = arrayToSort[i];
-			j = i-1;
-			while (j >= 0 && switchNum < arrayToSort[j]) {
-				arrayToSort[j+1] = arrayToSort[j];
-				j--;
+	public static void insert(int [] totalSyncCount, int val) {
+		for (int i = totalSyncCount.length-1; i >= 0; i--) {
+			if (val >= totalSyncCount[i]) {
+				for (int j = 1; j <= i; j++) {
+					int temp = totalSyncCount[j];
+					totalSyncCount[j] =  totalSyncCount[j-1];
+					totalSyncCount[j-1] = temp;
+				}
+				totalSyncCount[i] = val;
+				break;
 			}
-			arrayToSort[j+1] = switchNum;
 		}
 	}
 }
