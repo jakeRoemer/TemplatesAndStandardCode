@@ -13,15 +13,15 @@ public class Rook extends Piece {
 
 	@Override
 	public void startingPosition() {
-//		if (color) {
-//			position = 10;
-//		} else {
-//			position = 80;
-//		}
-//		if (id == 1) {
-//			position += 1;
-//		} else {
-//			position += 8;
-//		}
+		if (color) {
+			rank = 1;
+		} else {
+			rank = 8;
+		}
+		if (id == 1) {
+			file = 1;
+		} else {
+			file = 8;
+		}
 	}
 }

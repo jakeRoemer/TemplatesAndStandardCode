@@ -8,23 +8,19 @@ public class Queen extends Piece {
 	}
 
 	@Override
-	public boolean move (int newFile, int newRank) { 
-//		int diffY = Math.abs(newY-y);
-//		int x = position/10;
-//		int newX = position/10;
-//		int diffX = Math.abs(newX-x);
-//		if (y == newY && x == newX) {
-//			System.out.println("Can not move piece there");
-//		} else if (diffY == diffX) {
-//			if (realSquare(newPosition)) {
-//				position = newPosition;
-//				return true; //must change pieces on board as well					
-//			} else {
-//				System.out.println("Can not move piece there");
-//			}
-//		} else if (true) {
-//			
-//		}
+	public boolean move (int newFile, int newRank) {
+		if (file == newFile && rank == newRank) {
+			System.out.println("Can not move piece there");
+			return false;
+		}
+		if (Math.abs(newFile - file) == Math.abs(newRank - rank)) {
+			if (realSquare(newFile, newRank)) {
+				file = newFile;
+				rank = newRank;
+				return true; //must change pieces on board as well					
+			}
+		}
+		System.out.println("Can not move piece there");
 		return false;
 	}
 
