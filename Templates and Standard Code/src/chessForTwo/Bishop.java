@@ -8,6 +8,7 @@ public class Bishop extends Piece{
 	
 	@Override
 	public boolean move (int newFile, int newRank) {
+		
 		return false;
 	}
 	
