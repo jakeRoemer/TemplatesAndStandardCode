@@ -11,7 +11,6 @@ import java.util.Scanner;
 //implements greedy approximation approach
 public class SetCover {
 	
-	//testing Jake
 	public static HashSet<Integer> universalSet;
 	public static LinkedList<HashSet<Integer>> subSets;
 	public static LinkedList<HashSet<Integer>> completeCover;
