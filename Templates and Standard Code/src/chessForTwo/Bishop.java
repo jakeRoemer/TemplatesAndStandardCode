@@ -14,8 +14,9 @@ public class Bishop extends Piece{
 	
 	@Override
 	public void startingPosition() {
-		if (color) { 
-			position = 10;
+		if (color) {
+//			
+//			position = 10;
 		} else {
 			position = 80;
 		}
