@@ -13,15 +13,15 @@ public class Knight extends Piece {
 	
 	@Override
 	public void startingPosition() {
-//		if (color) {
-//			position = 10;
-//		} else {
-//			position = 80;
-//		}
-//		if (id == 1) {
-//			position += 2;
-//		} else {
-//			position += 7;
-//		}
+		if (color) {
+			rank = 1;
+		} else {
+			rank = 8;
+		}
+		if (id == 1) {
+			file = 2;
+		} else {
+			file = 7;
+		}
 	}
 }
