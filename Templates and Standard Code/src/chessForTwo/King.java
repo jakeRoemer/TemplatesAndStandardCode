@@ -9,23 +9,20 @@ public class King extends Piece {
 	
 	@Override
 	public boolean move (int newFile, int newRank) {
-		if (rank + 1 == newRank || rank - 1 == newRank || rank == newRank) {
-			if (file == newFile && rank == newRank){
-				System.out.println("Can not move piece there");
-			} else if (file + 1 == newFile || file - 1 == newFile || file == newFile) {
+		if (file == newFile && rank == newRank) {
+			System.out.println("Can not move piece there");
+			return false;
+		}
+		if (Math.abs(newFile - file) <= 1) {
+			if (Math.abs(newRank - rank) <= 1) {
 				if (realSquare(newFile, newRank)) {
 					file = newFile;
 					rank = newRank;
 					return true; //must change pieces on board as well					
-				} else {
-					System.out.println("Can not move piece there");
 				}
-			} else {
-				System.out.println("Can not move piece there");
 			}
-		} else {
-			System.out.println("Can not move piece there");
 		}
+		System.out.println("Can not move piece there");
 		return false;
 	}
 
