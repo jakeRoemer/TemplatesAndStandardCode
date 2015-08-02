@@ -1,6 +1,6 @@
 Normal Process (If no conflicts)
 
-Commit Local (multibple commits are ok)
+Commit Local (multiple commits are OK)
 Pull -- from Git Repo
 if no conflicts: push upstream
 
