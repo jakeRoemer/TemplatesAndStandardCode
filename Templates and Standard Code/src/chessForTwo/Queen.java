@@ -9,14 +9,14 @@ public class Queen extends Piece {
 
 	@Override
 	public boolean move (int newFile, int newRank) {
-		if (file == newFile && rank == newRank) {
+		if (getFile() == newFile && getRank() == newRank) {
 			System.out.println("Can not move piece there");
 			return false;
 		}
-		if (Math.abs(newFile - file) == Math.abs(newRank - rank)) {
+		if (Math.abs(newFile - getFile()) == Math.abs(newRank - getRank())) {
 			if (realSquare(newFile, newRank)) {
-				file = newFile;
-				rank = newRank;
+				setFile(newFile);
+				setRank(newRank);
 				return true; //must change pieces on board as well					
 			}
 		}
@@ -27,10 +27,10 @@ public class Queen extends Piece {
 	@Override
 	public void startingPosition() {
 		if (color) {
-			rank = 1;
+			setRank(1);
 		} else {
-			rank = 8;
+			setRank(8);
 		}
-		file = 4;
+		setFile(4);
 	}
 }

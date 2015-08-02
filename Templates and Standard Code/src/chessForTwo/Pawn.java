@@ -8,12 +8,12 @@ public class Pawn extends Piece {
 	
 	@Override
 	public boolean move(int newFile, int newRank) {
-		if (rank + 1 != newRank) {
+		if (getRank() + 1 != newRank) {
 			System.out.println("Can not move piece there");
 		}
 		if (realSquare(newFile, newRank)) {
-			file = newFile;
-			rank = newRank;
+			setFile(newFile);
+			setRank(newRank);
 			return true; //must change pieces on board as well					
 		}
 		return true;
@@ -22,10 +22,10 @@ public class Pawn extends Piece {
 	@Override
 	public void startingPosition() {
 		if (color) {
-			rank = 1;
+			setRank(1);
 		} else {
-			rank = 8;
+			setRank(8);
 		}
-		file = id;
+		setFile(id);
 	}
 }
