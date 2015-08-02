@@ -11,9 +11,8 @@ public class Bishop extends Piece {
 	public boolean move(int newFile, int newRank) {
 		if ((Math.abs(getRank() - newRank) == Math.abs(getFile() - newFile))) {
 			if (realSquare(newFile, newRank)) {
-				setFile(newFile);
-				setRank(newRank);
-				return true; // must change pieces on board as well
+				updatePosition(this, newFile, newRank);
+				return true;
 			}
 		}
 		System.out.println("Can not move piece there");

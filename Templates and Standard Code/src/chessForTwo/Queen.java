@@ -16,9 +16,8 @@ public class Queen extends Piece {
 		if (Math.abs(newFile - getFile()) == Math.abs(newRank - getRank()) || (Math.abs(getRank() - newRank) > 0 && Math.abs(getFile() - newFile) == 0)
 				|| (Math.abs(getRank() - newRank) == 0 && Math.abs(getFile() - newFile) > 0)) {
 			if (realSquare(newFile, newRank)) {
-				setFile(newFile);
-				setRank(newRank);
-				return true; //must change pieces on board as well					
+				updatePosition(this, newFile, newRank);
+				return true;					
 			}
 		}
 		System.out.println("Can not move piece there");
