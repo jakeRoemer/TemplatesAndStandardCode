@@ -18,9 +18,8 @@ public class Knight extends Piece {
 				rank = newRank;
 				return true; // must change pieces on board as well
 			}
-		} else {
-			System.out.println("Can not move piece there");
 		}
+		System.out.println("Can not move piece there");
 		return false;
 	}
 
