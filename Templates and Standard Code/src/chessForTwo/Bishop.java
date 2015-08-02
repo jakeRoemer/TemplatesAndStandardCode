@@ -4,7 +4,6 @@ public class Bishop extends Piece {
 
 	public Bishop(boolean color, int identifier) {
 		super("Bishop" + identifier, "B", color, identifier);
-		startingPosition();
 	}
 
 	@Override
@@ -23,14 +22,14 @@ public class Bishop extends Piece {
 	@Override
 	public void startingPosition() {
 		if (color) {
-			setRank(1);
+			rank = 1;
 		} else {
-			setRank(8);
+			rank = 8;
 		}
 		if (id == 1) {
-			setFile(3);
+			file = 3;
 		} else {
-			setFile(6);
+			file = 6;
 		}
 	}
 }
