@@ -43,7 +43,7 @@ public abstract class Piece {
 	 * multiple of the same piece)
 	 */
 	public abstract void startingPosition();
-
+	
 	/**
 	 * Helper function to determine if a square exists and is not already
 	 * occupied. Best to check for real square after checking if a move is
@@ -58,7 +58,20 @@ public abstract class Piece {
 		}
 		
 		return false;
-
+	}
+	/** Helper function to determine if a square exists and is not already occupied.
+	 * Best to check for real square after checking if a move is possible.
+	 * Can also be used as a check for capturing a piece. */
+	public boolean realSquare (int file, int rank) {
+		return true;
+	}
+	
+	/** Will update position of a piece on the board once it has moved */
+	public void updatePosition (Piece p, int newFile, int newRank) {
+		Board.piecesOnBoard[p.rank][p.file] = "";
+		p.setRank(newRank);
+		p.setFile(newFile);
+		Board.piecesOnBoard[p.rank][p.file] = p.boardName;
 	}
 
 	/** Will update position of a piece on the board once it has moved */

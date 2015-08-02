@@ -18,6 +18,7 @@ public class Bishop extends Piece {
 		}
 		System.out.println("Can not move piece there");
 		return false;
+
 	}
 
 	@Override

@@ -2,8 +2,8 @@ package chessForTwo;
 
 public class Board {
 	
-	int sizeOfBoard = 8; //8x8 board. Stick to an 8x8 board. If expanded -> Do 3D chess.
-	String [][] piecesOnBoard = new String[sizeOfBoard][sizeOfBoard];
+	static int sizeOfBoard = 8; //8x8 board. Stick to an 8x8 board. If expanded -> Do 3D chess.
+	static String [][] piecesOnBoard = new String[sizeOfBoard][sizeOfBoard];
 	
 	public Board(Player p1, Player p2) {
 		createBoard(p1, p2);
