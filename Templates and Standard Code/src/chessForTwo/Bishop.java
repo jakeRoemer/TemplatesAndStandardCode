@@ -10,7 +10,7 @@ public class Bishop extends Piece {
 	@Override
 	public boolean move(int newFile, int newRank) {
 		if ((Math.abs(getRank() - newRank) == Math.abs(getFile() - newFile))) {
-			if (realSquare(newFile, newRank)) {
+			if (validMove(newFile, newRank)) {
 				setFile(newFile);
 				setRank(newRank);
 				return true; // must change pieces on board as well

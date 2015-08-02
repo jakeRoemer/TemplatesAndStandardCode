@@ -11,7 +11,7 @@ public class Rook extends Piece {
 	public boolean move(int newFile, int newRank) {
 		if ((Math.abs(getRank() - newRank) > 0 && Math.abs(getFile() - newFile) == 0)
 				|| (Math.abs(getRank() - newRank) == 0 && Math.abs(getFile() - newFile) > 0)) {
-			if (realSquare(newFile, newRank)) {
+			if (validMove(newFile, newRank)) {
 				setFile(newFile);
 				setRank(newRank);
 				return true; // must change pieces on board as well

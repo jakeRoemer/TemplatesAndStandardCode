@@ -11,7 +11,7 @@ public class Pawn extends Piece {
 
 	@Override
 	public boolean move(int newFile, int newRank) {
-		if (color /* white */ && Math.abs(getFile() - newFile) == 0 && (realSquare(newFile, newRank))) {
+		if (color /* white */ && Math.abs(getFile() - newFile) == 0 && (validMove(newFile, newRank))) {
 			if (newRank == getRank() + 1) {
 				setFile(newFile);
 				setRank(newRank);
@@ -22,7 +22,7 @@ public class Pawn extends Piece {
 				enPassant = true;
 				return true; // must change pieces on board as well
 			}
-		} else if (Math.abs(getFile() - newFile) == 0 && (realSquare(newFile, newRank))) {
+		} else if (Math.abs(getFile() - newFile) == 0 && (validMove(newFile, newRank))) {
 			if (newRank == getRank() - 1) {
 				setFile(newFile);
 				setRank(newRank);
