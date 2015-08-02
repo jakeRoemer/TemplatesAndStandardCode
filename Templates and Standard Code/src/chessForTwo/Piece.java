@@ -8,7 +8,6 @@ public abstract class Piece {
 	private boolean alive = true;
 	public int file; //x
 	public int rank; //y
-	
 	public int id;
 	//position is specified by first digit corresponding to vertical side of the board
 	//and the second digit corresponding to the horizontal side of the board
@@ -51,5 +50,21 @@ public abstract class Piece {
 	
 	public void setAlive (boolean state) {
 		alive = state;
+	}
+	
+	public void setFile (int newFile) {
+		file = newFile;
+	}
+	
+	public int getFile () {
+		return file;
+	}
+	
+	public void setRank (int newRank) {
+		rank = newRank;
+	}
+	
+	public int getRank () {
+		return rank;
 	}
 }
