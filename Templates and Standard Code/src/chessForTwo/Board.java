@@ -24,7 +24,7 @@ public class Board {
 		}
 	}
 	
-	public void displayBoard() {
+	public static void displayBoard() {
 		for (int i = 0; i < sizeOfBoard; i++) { //top of board
 			System.out.print(" _");
 		}
@@ -41,7 +41,7 @@ public class Board {
 		}
 	}
 	
-	public void play(Player p1, Player p2) {
+	public static void play(Player p1, Player p2) {
 		if (p1.turn) {
 			p1.playerPieces.getLast().move(p1.playerPieces.getLast().file, p1.playerPieces.getLast().rank+1);
 			p1.winner = true;
