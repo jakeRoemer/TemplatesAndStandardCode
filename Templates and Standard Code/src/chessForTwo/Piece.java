@@ -54,9 +54,11 @@ public abstract class Piece {
 		// on board?
 		if (isOnBoard(newFile, newRank) && isEmptyPath(newFile, newRank) && isEmptySpace(newFile, newRank)) {
 			// empty path
-			for (String[] rank : Board.piecesOnBoard) {
-				for (String file : rank) {
-					if (!file.equals("N")) {
+			for (Piece [] pieces : Board.piecesOnBoard) {
+				for (Piece p : pieces) {
+					if (!p.boardName.equals("N")) {
+						//To find color: p.color
+						
 
 					} else {
 
@@ -82,9 +84,9 @@ public abstract class Piece {
 	}
 
 	public boolean isEmptyPath(int newFile, int newRank) {
-		for (String[] rank : Board.piecesOnBoard) {
-			for (String file : rank) {
-				if (!file.equals("N")) {
+		for (Piece [] pieces : Board.piecesOnBoard) {
+			for (Piece p : pieces) {
+				if (!p.boardName.equals("N")) {
 					
 
 				} else {
@@ -113,10 +115,10 @@ public abstract class Piece {
 
 	/** Will update position of a piece on the board once it has moved */
 	public void updatePosition(Piece p, int newFile, int newRank) {
-		Board.piecesOnBoard[p.rank - 1][p.file - 1] = "";
+		Board.piecesOnBoard[p.rank - 1][p.file - 1] = null;
 		p.setRank(newRank);
 		p.setFile(newFile);
-		Board.piecesOnBoard[p.rank - 1][p.file - 1] = p.boardName;
+		Board.piecesOnBoard[p.rank - 1][p.file - 1] = p;
 	}
 
 	/** Will update position of a piece on the board once it has moved */
