@@ -8,7 +8,7 @@ public class Bishop extends Piece {
 
 	@Override
 	public boolean move(int newFile, int newRank) {
-		if ((Math.abs(rank - newRank) == Math.abs(file - newFile))) {
+		if ((Math.abs(getRank() - newRank) == Math.abs(getFile() - newFile))) {
 			if (realSquare(newFile, newRank)) {
 				setFile(newFile);
 				setRank(newRank);

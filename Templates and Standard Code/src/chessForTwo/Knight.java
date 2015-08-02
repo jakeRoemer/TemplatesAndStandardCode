@@ -11,8 +11,8 @@ public class Knight extends Piece {
 		// Knight can move 2 rank if file moves 1, and can move 1 rank if file
 		// moves 2
 
-		if ((Math.abs(rank - newRank) == 1 && Math.abs(file - newFile) == 2)
-				|| (Math.abs(rank - newRank) == 2 && Math.abs(file - newFile) == 1)) {
+		if ((Math.abs(getRank() - newRank) == 1 && Math.abs(getFile() - newFile) == 2)
+				|| (Math.abs(getRank() - newRank) == 2 && Math.abs(getFile() - newFile) == 1)) {
 			if (realSquare(newFile, newRank)) {
 				setFile(newFile);
 				setRank(newRank);
