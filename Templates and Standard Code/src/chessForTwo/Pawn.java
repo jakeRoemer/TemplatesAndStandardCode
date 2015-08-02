@@ -5,7 +5,7 @@ public class Pawn extends Piece {
 	public Boolean enPassant = false;
 
 	public Pawn(boolean color, int identifier) {
-		super("Pawn" + identifier, "P", color, identifier);
+		super("Pawn" + identifier, color ? "P" : "p", color, identifier);
 		startingPosition();
 	}
 

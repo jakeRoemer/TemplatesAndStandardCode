@@ -31,7 +31,7 @@ public class Board {
 		System.out.println();
 		for (int i = 0; i < sizeOfBoard; i++) {
 			for (int j = 0; j < sizeOfBoard; j++) {
-				if (!piecesOnBoard[i][j].equals("")) {
+				if (piecesOnBoard[i][j] != null) {
 					System.out.print("|" + piecesOnBoard[i][j].boardName);
 				} else {
 					System.out.print("|_");
@@ -41,7 +41,7 @@ public class Board {
 		}
 	}
 	
-	public void play(TurnGUI userInput, Player p1, Player p2) {
+	public void play(Player p1, Player p2) {
 		if (p1.turn) {
 			p1.playerPieces.getLast().move(p1.playerPieces.getLast().file, p1.playerPieces.getLast().rank+1);
 			p1.winner = true;

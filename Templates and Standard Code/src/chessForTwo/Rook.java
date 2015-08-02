@@ -3,7 +3,7 @@ package chessForTwo;
 public class Rook extends Piece {
 
 	public Rook(boolean color, int identifier) {
-		super("Rook" + identifier, "R", color, identifier);
+		super("Rook" + identifier, color ? "R" : "r", color, identifier);
 		startingPosition();
 	}
 

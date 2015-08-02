@@ -3,7 +3,7 @@ package chessForTwo;
 public class Knight extends Piece {
 
 	public Knight(boolean color, int identifier) {
-		super("Knight" + identifier, "N", color, identifier);
+		super("Knight" + identifier, color ? "N" : "n", color, identifier);
 		startingPosition();
 	}
 

@@ -3,7 +3,7 @@ package chessForTwo;
 public class Bishop extends Piece {
 
 	public Bishop(boolean color, int identifier) {
-		super("Bishop" + identifier, "B", color, identifier);
+		super("Bishop" + identifier, color ? "B" : "b", color, identifier);
 		startingPosition();
 	}
 
