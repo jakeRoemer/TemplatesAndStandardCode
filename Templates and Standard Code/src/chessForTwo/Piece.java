@@ -65,14 +65,32 @@ public abstract class Piece {
 	}
 
 	public boolean isEmptyPath(int newFile, int newRank) {
-		if (newRank-Math.abs(getRank()) == Math.abs(newFile-getFile())) {
-			// condition meet for diagonal movement
+		if (newRank - Math.abs(getRank()) == Math.abs(newFile - getFile())) {
+			// condition met for diagonal movement
+			for (int i = getRank()+1; i < newRank; i++) {
+				if (Board.piecesOnBoard[rank + i - getRank()][i] != null) {
+					return false;
+				}
+			}
+			return true;
 		}
-		if (newRank-Math.abs(getRank()) > 0 && Math.abs(newFile-getFile()) == 0) {
+		if (newRank - Math.abs(getRank()) > 0 && Math.abs(newFile - getFile()) == 0) {
 			// Condition met if movement in Rank Direction only
+			for (int i = getRank()+1; i < newRank; i++) {
+				if (Board.piecesOnBoard[i][getFile()] != null) {
+					return false;
+				}
+			}
+			return true;
 		}
-		if (newRank-Math.abs(getRank()) == 0 && Math.abs(newFile-getFile()) > 0) {
+		if (newRank - Math.abs(getRank()) == 0 && Math.abs(newFile - getFile()) > 0) {
 			// Condition met if movement in File Direction only
+			for (int i = getFile()+1; i < newFile; i++) {
+				if (Board.piecesOnBoard[getRank()][i] != null) {
+					return false;
+				}
+			}
+			return true;
 		}
 
 		for (Piece[] pieces : Board.piecesOnBoard) {
@@ -88,7 +106,7 @@ public abstract class Piece {
 	}
 
 	public boolean isEmptySpace(int newFile, int newRank) {
-		if (Board.piecesOnBoard[newFile - 1][newRank - 1] == null) {
+		if (Board.piecesOnBoard[newRank - 1][newFile - 1] == null) {
 			return true;
 		}
 
