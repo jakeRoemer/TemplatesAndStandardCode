@@ -4,6 +4,7 @@ public class Pawn extends Piece {
 	
 	public Pawn(boolean color, int identifier) {
 		super("Pawn" + identifier, "P", color, identifier);
+		startingPosition();
 	}
 	
 	@Override
@@ -22,9 +23,9 @@ public class Pawn extends Piece {
 	@Override
 	public void startingPosition() {
 		if (color) {
-			setRank(1);
+			setRank(2);
 		} else {
-			setRank(8);
+			setRank(7);
 		}
 		setFile(id);
 	}

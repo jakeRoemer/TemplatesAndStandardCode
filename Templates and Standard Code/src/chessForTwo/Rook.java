@@ -4,6 +4,7 @@ public class Rook extends Piece {
 
 	public Rook(boolean color, int identifier) {
 		super("Rook" + identifier, "R", color, identifier);
+		startingPosition();
 	}
 
 	@Override
@@ -20,7 +21,6 @@ public class Rook extends Piece {
 		return false;
 	}
 
-	//Jake was here
 	@Override
 	public void startingPosition() {
 		if (color) {

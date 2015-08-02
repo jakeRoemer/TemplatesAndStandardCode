@@ -7,6 +7,8 @@ public class Player {
 	private boolean turn = false;
 	public boolean color; //white or black
 	public boolean winner = false;
+	public int turnCount = 0;
+	public long timer = 0;
 	public LinkedList<Piece> playerPieces;
 	
 	public Player(boolean color) {
