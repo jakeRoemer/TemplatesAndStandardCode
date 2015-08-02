@@ -69,28 +69,28 @@ public abstract class Piece {
 			// condition met for diagonal movement
 			for (int i = getRank()+1; i < newRank; i++) {
 				if (Board.piecesOnBoard[rank + i - getRank()][i] != null) {
-					return false;
+					return true;
 				}
 			}
-			return true;
+			return false;
 		}
 		if (newRank - Math.abs(getRank()) > 0 && Math.abs(newFile - getFile()) == 0) {
 			// Condition met if movement in Rank Direction only
 			for (int i = getRank()+1; i < newRank; i++) {
 				if (Board.piecesOnBoard[i][getFile()] != null) {
-					return false;
+					return true;
 				}
 			}
-			return true;
+			return false;
 		}
 		if (newRank - Math.abs(getRank()) == 0 && Math.abs(newFile - getFile()) > 0) {
 			// Condition met if movement in File Direction only
 			for (int i = getFile()+1; i < newFile; i++) {
 				if (Board.piecesOnBoard[getRank()][i] != null) {
-					return false;
+					return true;
 				}
 			}
-			return true;
+			return false;
 		}
 
 		for (Piece[] pieces : Board.piecesOnBoard) {
