@@ -6,7 +6,7 @@ public class Match {
 		Player p2 = new Player(false); //black
 		Board b = new Board(p1, p2);
 		while (!p1.winner && !p2.winner) {
-			b.play();
+			b.play(p1, p2);
 		}
 		if (p1.winner) {
 			System.out.println("Player 1 is the winner");
