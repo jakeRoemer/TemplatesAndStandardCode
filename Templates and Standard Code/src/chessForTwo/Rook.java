@@ -20,6 +20,7 @@ public class Rook extends Piece {
 		return false;
 	}
 
+	//Jake was here
 	@Override
 	public void startingPosition() {
 		if (color) {
