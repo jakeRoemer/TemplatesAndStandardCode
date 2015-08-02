@@ -20,7 +20,7 @@ public abstract class Piece {
 		this.boardName = boardName;
 		this.color = color;
 	}
-	
+
 	/** Creates one of multiple pieces that exist on a player's side. */
 	public Piece (String name, String boardName, boolean color, int identifier) {
 		this.name = name;
