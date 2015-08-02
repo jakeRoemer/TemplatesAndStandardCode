@@ -51,4 +51,20 @@ public abstract class Piece {
 	public void setAlive (boolean state) {
 		alive = state;
 	}
+	
+	public int getFile () {
+		return file;
+	}
+	
+	public void setFile(int file) {
+		this.file = file;
+	}
+	
+	public int getRank () {
+		return rank;
+	}
+	
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
 }

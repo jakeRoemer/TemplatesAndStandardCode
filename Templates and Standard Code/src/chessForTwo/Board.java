@@ -17,18 +17,10 @@ public class Board {
 			}
 		}
 		for (Piece p : p1.playerPieces) {
-			
-			if (p.file-1 < 0) {
-				System.out.println(p.name + "file" + (p.file-1));
-			}
-			if (p.rank-1 < 0) {
-				System.out.println(p.name + "rank" + (p.rank-1));
-			}
-			
+			piecesOnBoard[p.getFile()-1][p.getRank()-1] = p.boardName;
 		}
-//		piecesOnBoard[p.file-1][p.rank-1] = p.boardName;
 		for (Piece p : p2.playerPieces) {
-			piecesOnBoard[p.file-1][p.rank-1] = p.boardName;
+			piecesOnBoard[p.getFile()-1][p.getRank()-1] = p.boardName;
 		}
 	}
 	

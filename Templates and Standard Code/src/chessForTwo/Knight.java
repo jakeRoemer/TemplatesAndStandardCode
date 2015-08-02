@@ -4,6 +4,7 @@ public class Knight extends Piece {
 
 	public Knight(boolean color, int identifier) {
 		super("Knight" + identifier, "Kn", color, identifier);
+		startingPosition();
 	}
 
 	@Override
@@ -14,8 +15,8 @@ public class Knight extends Piece {
 		if ((Math.abs(rank - newRank) == 1 && Math.abs(file - newFile) == 2)
 				|| (Math.abs(rank - newRank) == 2 && Math.abs(file - newFile) == 1)) {
 			if (realSquare(newFile, newRank)) {
-				file = newFile;
-				rank = newRank;
+				setFile(newFile);
+				setRank(newRank);
 				return true; // must change pieces on board as well
 			}
 		} else {
@@ -27,14 +28,14 @@ public class Knight extends Piece {
 	@Override
 	public void startingPosition() {
 		if (color) {
-			rank = 1;
+			setRank(1);
 		} else {
-			rank = 8;
+			setRank(8);
 		}
 		if (id == 1) {
-			file = 2;
+			setFile(2);
 		} else {
-			file = 7;
+			setFile(7);
 		}
 	}
 }
