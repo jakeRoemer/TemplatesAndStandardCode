@@ -4,6 +4,7 @@ public class Rook extends Piece {
 
 	public Rook(boolean color, int identifier) {
 		super("Rook" + identifier, "R", color, identifier);
+		startingPosition();
 	}
 	
 	@Override
@@ -14,14 +15,14 @@ public class Rook extends Piece {
 	@Override
 	public void startingPosition() {
 		if (color) {
-			rank = 1;
+			setRank(1);
 		} else {
-			rank = 8;
+			setRank(8);
 		}
 		if (id == 1) {
-			file = 1;
+			setFile(1);
 		} else {
-			file = 8;
+			setFile(8);
 		}
 	}
 }

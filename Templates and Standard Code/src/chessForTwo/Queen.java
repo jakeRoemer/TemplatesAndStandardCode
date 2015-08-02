@@ -27,10 +27,10 @@ public class Queen extends Piece {
 	@Override
 	public void startingPosition() {
 		if (color) {
-			rank = 1;
+			setRank(1);
 		} else {
-			rank = 8;
+			setRank(8);
 		}
-		file = 4;
+		setFile(4);
 	}
 }

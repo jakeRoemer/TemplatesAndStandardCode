@@ -8,7 +8,6 @@ public abstract class Piece {
 	private boolean alive = true;
 	public int file; //x
 	public int rank; //y
-	
 	public int id;
 	//position is specified by first digit corresponding to vertical side of the board
 	//and the second digit corresponding to the horizontal side of the board
@@ -20,7 +19,7 @@ public abstract class Piece {
 		this.boardName = boardName;
 		this.color = color;
 	}
-	//4242424
+
 	/** Creates one of multiple pieces that exist on a player's side. */
 	public Piece (String name, String boardName, boolean color, int identifier) {
 		this.name = name;
@@ -51,5 +50,21 @@ public abstract class Piece {
 	
 	public void setAlive (boolean state) {
 		alive = state;
+	}
+	
+	public int getFile () {
+		return file;
+	}
+	
+	public void setFile(int file) {
+		this.file = file;
+	}
+	
+	public int getRank () {
+		return rank;
+	}
+	
+	public void setRank(int rank) {
+		this.rank = rank;
 	}
 }
