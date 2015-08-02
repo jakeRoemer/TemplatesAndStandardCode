@@ -51,28 +51,9 @@ public abstract class Piece {
 	 * for capturing a piece.
 	 */
 	public boolean validMove(int newFile, int newRank) {
-		// on board?
 		if (isOnBoard(newFile, newRank) && isEmptyPath(newFile, newRank) && isEmptySpace(newFile, newRank)) {
-			// empty path
-			for (Piece [] pieces : Board.piecesOnBoard) {
-				for (Piece p : pieces) {
-					if (!p.boardName.equals("N")) {
-						//To find color: p.color
-						
-
-					} else {
-
-					}
-
-				}
-
-			}
-
-			// empty space?
-
 			return true;
 		}
-
 		return false;
 	}
 
@@ -84,33 +65,37 @@ public abstract class Piece {
 	}
 
 	public boolean isEmptyPath(int newFile, int newRank) {
-		for (Piece [] pieces : Board.piecesOnBoard) {
+		if (newRank-Math.abs(getRank()) == Math.abs(newFile-getFile())) {
+			// condition meet for diagonal movement
+		}
+		if (newRank-Math.abs(getRank()) > 0 && Math.abs(newFile-getFile()) == 0) {
+			// Condition met if movement in Rank Direction only
+		}
+		if (newRank-Math.abs(getRank()) == 0 && Math.abs(newFile-getFile()) > 0) {
+			// Condition met if movement in File Direction only
+		}
+
+		for (Piece[] pieces : Board.piecesOnBoard) {
 			for (Piece p : pieces) {
 				if (!p.boardName.equals("N")) {
-					
 
 				} else {
 					return true;
 				}
-
 			}
-
 		}
 		return false;
 	}
 
 	public boolean isEmptySpace(int newFile, int newRank) {
+		if (Board.piecesOnBoard[newFile - 1][newRank - 1] == null) {
+			return true;
+		}
 
+		System.out.println("Piece may be capturable. Test not implimented yet.");
+		// TODO: write isCapturable method to determine if the Non-empty space
+		// contains an opposing players piece.
 		return false;
-	}
-
-	/**
-	 * Helper function to determine if a square exists and is not already
-	 * occupied. Best to check for real square after checking if a move is
-	 * possible. Can also be used as a check for capturing a piece.
-	 */
-	public boolean realSquare(int file, int rank) {
-		return true;
 	}
 
 	/** Will update position of a piece on the board once it has moved */
