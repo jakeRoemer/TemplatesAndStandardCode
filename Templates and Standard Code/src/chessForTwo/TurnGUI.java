@@ -61,7 +61,7 @@ public class TurnGUI extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 						//switch player and relay information from button press
 						String [] position = e.getActionCommand().split(",");
-						
+						Board.play(Integer.valueOf(position[1]), Integer.valueOf(position[0]));
 						System.out.println("rank: " + position[0]);
 						System.out.println("file: " + position[1]);
 						

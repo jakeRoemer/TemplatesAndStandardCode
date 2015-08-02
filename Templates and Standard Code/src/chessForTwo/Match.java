@@ -12,13 +12,12 @@ public class Match {
 				new TurnGUI();
 			}
 		});
-		while (!p1.winner && !p2.winner) {
-			b.play(p1, p2);
-		}
+		while (!p1.winner && !p2.winner) {}
 		if (p1.winner) {
 			System.out.println("Player 1 is the winner");
 		} else {
 			System.out.println("Player 2 is the winner");
 		}
+		System.exit(0); //closes gui
 	}
 }

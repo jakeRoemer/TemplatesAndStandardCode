@@ -4,8 +4,14 @@ public class Board {
 	
 	static int sizeOfBoard = 8; //8x8 board. Stick to an 8x8 board. If expanded -> Do 3D chess.
 	static Piece [][] piecesOnBoard = new Piece[sizeOfBoard][sizeOfBoard];
+	public static Player white;
+	public static Player black;
+	public static Piece playerPiece;
+	public static boolean pickingPiece = true;
 	
 	public Board(Player p1, Player p2) {
+		white = p1;
+		black = p2;
 		createBoard(p1, p2);
 		displayBoard();
 	}
@@ -41,16 +47,21 @@ public class Board {
 		}
 	}
 	
-	public static void play(Player p1, Player p2) {
-		if (p1.turn) {
-			p1.playerPieces.getLast().move(p1.playerPieces.getLast().file, p1.playerPieces.getLast().rank+1);
-			p1.winner = true;
-			p2.turn = true;
-			p1.turn = false;
-			displayBoard();
+	public static void play(int newFile, int newRank) {
+		if (playerPiece != null) {
+			playerPiece.move(newFile, newRank);
+			pickingPiece = true;
 		} else {
-			p1.turn = true;
-			p2.turn = false;
+			//pick piece
+			pickingPiece = false;
+		}
+		if (white.turn && !pickingPiece) {
+			white.turn = false;
+			black.turn = true;
+		} else if (black.turn && !pickingPiece){
+			black.winner = true;
+			white.turn = true;
+			black.turn = false;
 		}
 	}
 }
