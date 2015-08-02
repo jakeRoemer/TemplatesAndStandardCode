@@ -32,6 +32,9 @@ public abstract class Piece {
 	 * A move is possible if the piece is allowed to move to that square, if the square exists on the board,
 	 *  and the square is not occupied */
 	public abstract boolean move (int newFile, int newRank);
+
+	/** Starting position for a piece based on owner (white/black) and id (for multiple of the same piece) */
+	public abstract void startingPosition();
 	
 	/** Helper function to determine if a square exists and is not already occupied.
 	 * Best to check for real square after checking if a move is possible.
@@ -40,8 +43,10 @@ public abstract class Piece {
 		return true;
 	}
 	
-	/** Starting position for a piece based on owner (white/black) and id (for multiple of the same piece) */
-	public abstract void startingPosition();
+	/** Will update position of a piece on the board once it has moved */
+	public void updatePosition (int newFile, int newRank) {
+		
+	}
 	
 	/** Returns the state of the piece. Can be used to tally standing points. */
 	public boolean isAlive () {

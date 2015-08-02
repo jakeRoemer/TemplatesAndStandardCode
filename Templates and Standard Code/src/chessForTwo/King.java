@@ -18,7 +18,7 @@ public class King extends Piece {
 				if (realSquare(newFile, newRank)) {
 					setFile(newFile);
 					setRank(newRank);
-					return true; //must change pieces on board as well					
+					return true;					
 				}
 			}
 		}
