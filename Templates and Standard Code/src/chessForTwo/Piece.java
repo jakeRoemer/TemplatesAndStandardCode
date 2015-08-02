@@ -25,7 +25,7 @@ public abstract class Piece {
 		this.name = name;
 		this.boardName = boardName;
 		this.color = color;
-		id = identifier;
+		id = identifier; 
 	}
 	
 	/** Determines if this placement is possible. Will move the piece to this new position if possible.

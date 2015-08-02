@@ -8,8 +8,8 @@ public class Rook extends Piece {
 
 	@Override
 	public boolean move(int newFile, int newRank) {
-		if ((Math.abs(rank - newRank) > 0 && Math.abs(file - newFile) == 0)
-				|| (Math.abs(rank - newRank) == 0 && Math.abs(file - newFile) > 0)) {
+		if ((Math.abs(getRank() - newRank) > 0 && Math.abs(getFile() - newFile) == 0)
+				|| (Math.abs(getRank() - newRank) == 0 && Math.abs(getFile() - newFile) > 0)) {
 			if (realSquare(newFile, newRank)) {
 				setFile(newFile);
 				setRank(newRank);
