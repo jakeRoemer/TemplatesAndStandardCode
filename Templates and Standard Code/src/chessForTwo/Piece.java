@@ -43,35 +43,80 @@ public abstract class Piece {
 	 * multiple of the same piece)
 	 */
 	public abstract void startingPosition();
-	
+
+	/**
+	 * Helper function to determine if a square is a valid place to move. It
+	 * must be on the board and not already occupied. Best to check for real
+	 * square after checking if a move is possible. Can also be used as a check
+	 * for capturing a piece.
+	 */
+	public boolean validMove(int newFile, int newRank) {
+		// on board?
+		if (isOnBoard(newFile, newRank) && isEmptyPath(newFile, newRank) && isEmptySpace(newFile, newRank)) {
+			// empty path
+			for (String[] rank : Board.piecesOnBoard) {
+				for (String file : rank) {
+					if (!file.equals("N")) {
+
+					} else {
+
+					}
+
+				}
+
+			}
+
+			// empty space?
+
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isOnBoard(int newFile, int newRank) {
+		if (newRank < 9 && newRank > 0 && newFile < 9 && newFile > 0) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isEmptyPath(int newFile, int newRank) {
+		for (String[] rank : Board.piecesOnBoard) {
+			for (String file : rank) {
+				if (!file.equals("N")) {
+					
+
+				} else {
+					return true;
+				}
+
+			}
+
+		}
+		return false;
+	}
+
+	public boolean isEmptySpace(int newFile, int newRank) {
+
+		return false;
+	}
+
 	/**
 	 * Helper function to determine if a square exists and is not already
 	 * occupied. Best to check for real square after checking if a move is
 	 * possible. Can also be used as a check for capturing a piece.
 	 */
-	public boolean validMove(int file, int rank) {
-		//on board?
-		if (rank < 9 && rank > 0 && file < 9 && file > 0) {
-			//empty space?
-			
-			return true;
-		}
-		
-		return false;
-	}
-	/** Helper function to determine if a square exists and is not already occupied.
-	 * Best to check for real square after checking if a move is possible.
-	 * Can also be used as a check for capturing a piece. */
-	public boolean realSquare (int file, int rank) {
+	public boolean realSquare(int file, int rank) {
 		return true;
 	}
-	
+
 	/** Will update position of a piece on the board once it has moved */
-	public void updatePosition (Piece p, int newFile, int newRank) {
-		Board.piecesOnBoard[p.rank-1][p.file-1] = "";
+	public void updatePosition(Piece p, int newFile, int newRank) {
+		Board.piecesOnBoard[p.rank - 1][p.file - 1] = "";
 		p.setRank(newRank);
 		p.setFile(newFile);
-		Board.piecesOnBoard[p.rank-1][p.file-1] = p.boardName;
+		Board.piecesOnBoard[p.rank - 1][p.file - 1] = p.boardName;
 	}
 
 	/** Will update position of a piece on the board once it has moved */
