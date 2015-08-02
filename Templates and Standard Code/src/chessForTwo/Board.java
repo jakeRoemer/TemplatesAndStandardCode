@@ -49,10 +49,28 @@ public class Board {
 	
 	public static void play(int newFile, int newRank) {
 		if (playerPiece != null) {
-			playerPiece.move(newFile, newRank);
+			if (!playerPiece.move(newFile, newRank)) {
+				System.out.println("Piece can not move there");
+				return;
+			}
+			playerPiece = null;
 			pickingPiece = true;
 		} else {
-			//pick piece
+			if (white.turn) {
+				if (piecesOnBoard[newFile-1][newRank-1].color) {
+					playerPiece = piecesOnBoard[newFile-1][newRank-1];
+				} else {
+					System.out.println("Pieces can not move there");
+					return;
+				}
+			} else {
+				if (!piecesOnBoard[newFile-1][newRank-1].color) {
+					playerPiece = piecesOnBoard[newFile-1][newRank-1];
+				} else {
+					System.out.println("Pieces can not move there");
+					return;
+				}
+			}
 			pickingPiece = false;
 		}
 		if (white.turn && !pickingPiece) {
