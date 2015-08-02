@@ -2,20 +2,20 @@ package chessForTwo;
 
 public class King extends Piece {
 
-	public King (boolean color) {
+	public King(boolean color) {
 		super("King", "K", color);
 		startingPosition();
 	}
-	
+
 	@Override
-	public boolean move (int newFile, int newRank) {
+	public boolean move(int newFile, int newRank) {
 		if (getFile() == newFile && getRank() == newRank) {
 			System.out.println("Can not move piece there");
 			return false;
 		}
 		if (Math.abs(newFile - getFile()) <= 1) {
 			if (Math.abs(newRank - getRank()) <= 1) {
-				if (realSquare(newFile, newRank)) {
+				if (validMove(newFile, newRank)) {
 					updatePosition(this, newFile, newRank);
 					return true;
 				}

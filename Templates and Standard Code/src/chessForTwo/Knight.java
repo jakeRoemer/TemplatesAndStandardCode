@@ -14,9 +14,9 @@ public class Knight extends Piece {
 
 		if ((Math.abs(getRank() - newRank) == 1 && Math.abs(getFile() - newFile) == 2)
 				|| (Math.abs(getRank() - newRank) == 2 && Math.abs(getFile() - newFile) == 1)) {
-			if (realSquare(newFile, newRank)) {
+			if (validMove(newFile, newRank)) {
 				updatePosition(this, newFile, newRank);
-				return true;
+				return true; // must change pieces on board as well
 			}
 		}
 		System.out.println("Can not move piece there");
