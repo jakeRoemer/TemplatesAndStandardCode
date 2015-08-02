@@ -4,7 +4,6 @@ public class Pawn extends Piece {
 	
 	public Pawn(boolean color, int identifier) {
 		super("Pawn" + identifier, "P", color, identifier);
-		startingPosition();
 	}
 	
 	@Override
@@ -13,8 +12,8 @@ public class Pawn extends Piece {
 			System.out.println("Can not move piece there");
 		}
 		if (realSquare(newFile, newRank)) {
-			setFile(newFile);
-			setRank(newRank);
+			file = newFile;
+			rank = newRank;
 			return true; //must change pieces on board as well					
 		}
 		return true;
@@ -23,10 +22,10 @@ public class Pawn extends Piece {
 	@Override
 	public void startingPosition() {
 		if (color) {
-			setRank(1);
+			rank = 1;
 		} else {
-			setRank(8);
+			rank = 8;
 		}
-		setFile(id);
+		file = id;
 	}
 }

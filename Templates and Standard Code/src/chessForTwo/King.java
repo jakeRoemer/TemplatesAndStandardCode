@@ -16,8 +16,8 @@ public class King extends Piece {
 		if (Math.abs(newFile - file) <= 1) {
 			if (Math.abs(newRank - rank) <= 1) {
 				if (realSquare(newFile, newRank)) {
-					setFile(newFile);
-					setRank(newRank);
+					file = newFile;
+					rank = newRank;
 					return true; //must change pieces on board as well					
 				}
 			}
@@ -29,10 +29,10 @@ public class King extends Piece {
 	@Override
 	public void startingPosition() {
 		if (color) {
-			setRank(1);
+			rank = 1;
 		} else {
-			setRank(8);
+			rank = 8;
 		}
-		setFile(5);
+		file = 5;
 	}
 }
