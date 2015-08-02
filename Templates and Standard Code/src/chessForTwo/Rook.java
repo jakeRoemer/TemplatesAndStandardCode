@@ -11,8 +11,8 @@ public class Rook extends Piece {
 		if ((Math.abs(rank - newRank) > 0 && Math.abs(file - newFile) == 0)
 				|| (Math.abs(rank - newRank) == 0 && Math.abs(file - newFile) > 0)) {
 			if (realSquare(newFile, newRank)) {
-				file = newFile;
-				rank = newRank;
+				setFile(newFile);
+				setRank(newRank);
 				return true; // must change pieces on board as well
 			}
 		}
@@ -23,14 +23,14 @@ public class Rook extends Piece {
 	@Override
 	public void startingPosition() {
 		if (color) {
-			rank = 1;
+			setRank(1);
 		} else {
-			rank = 8;
+			setRank(8);
 		}
 		if (id == 1) {
-			file = 1;
+			setFile(1);
 		} else {
-			file = 8;
+			setFile(8);
 		}
 	}
 }
