@@ -10,8 +10,8 @@ public class Bishop extends Piece {
 	public boolean move(int newFile, int newRank) {
 		if ((Math.abs(rank - newRank) == Math.abs(file - newFile))) {
 			if (realSquare(newFile, newRank)) {
-				file = newFile;
-				rank = newRank;
+				setFile(newFile);
+				setRank(newRank);
 				return true; // must change pieces on board as well
 			}
 		}
@@ -22,14 +22,14 @@ public class Bishop extends Piece {
 	@Override
 	public void startingPosition() {
 		if (color) {
-			rank = 1;
+			setRank(1);
 		} else {
-			rank = 8;
+			setRank(8);
 		}
 		if (id == 1) {
-			file = 3;
+			setFile(3);
 		} else {
-			file = 6;
+			setFile(3);
 		}
 	}
 }
