@@ -16,8 +16,7 @@ public class King extends Piece {
 		if (Math.abs(newFile - getFile()) <= 1) {
 			if (Math.abs(newRank - getRank()) <= 1) {
 				if (validMove(newFile, newRank)) {
-					setFile(newFile);
-					setRank(newRank);
+					updatePosition(this, newFile, newRank);
 					return true;
 				}
 			}

@@ -12,26 +12,20 @@ public class Pawn extends Piece {
 	@Override
 	public boolean move(int newFile, int newRank) {
 		if (color /* white */ && Math.abs(getFile() - newFile) == 0 && (validMove(newFile, newRank))) {
-			if (newRank == getRank() + 1) {
-				setFile(newFile);
-				setRank(newRank);
-				return true; // must change pieces on board as well
-			} else if (newRank == getRank() + 2 && getRank() == 2) {
-				setFile(newFile);
-				setRank(newRank);
-				enPassant = true;
-				return true; // must change pieces on board as well
+			if (newRank == getRank() + 1 || (newRank == getRank() + 2 && getRank() == 2)) {
+				if (newRank == getRank() + 2) {
+					enPassant = true;
+				}
+				updatePosition(this, newFile, newRank);
+				return true;
 			}
 		} else if (Math.abs(getFile() - newFile) == 0 && (validMove(newFile, newRank))) {
-			if (newRank == getRank() - 1) {
-				setFile(newFile);
-				setRank(newRank);
-				return true; // must change pieces on board as well
-			} else if (newRank == getRank() - 2 && getRank() == 7) {
-				setFile(newFile);
-				setRank(newRank);
-				enPassant = true;
-				return true; // must change pieces on board as well
+			if (newRank == getRank() - 1 || (newRank == getRank() - 2 && getRank() == 7)) {
+				if (newRank == getRank() - 2) {
+					enPassant = true;
+				}
+				updatePosition(this, newFile, newRank);
+				return true;
 			}
 		}
 		System.out.println("Can not move piece there");

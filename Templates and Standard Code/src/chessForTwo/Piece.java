@@ -68,10 +68,10 @@ public abstract class Piece {
 	
 	/** Will update position of a piece on the board once it has moved */
 	public void updatePosition (Piece p, int newFile, int newRank) {
-		Board.piecesOnBoard[p.rank][p.file] = "";
+		Board.piecesOnBoard[p.rank-1][p.file-1] = "";
 		p.setRank(newRank);
 		p.setFile(newFile);
-		Board.piecesOnBoard[p.rank][p.file] = p.boardName;
+		Board.piecesOnBoard[p.rank-1][p.file-1] = p.boardName;
 	}
 
 	/** Will update position of a piece on the board once it has moved */

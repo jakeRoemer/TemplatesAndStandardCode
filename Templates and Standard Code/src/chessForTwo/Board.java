@@ -41,7 +41,16 @@ public class Board {
 		}
 	}
 	
-	public void play() {
-		
+	public void play(Player p1, Player p2) {
+		if (p1.turn) {
+			p1.playerPieces.getLast().move(p1.playerPieces.getLast().file, p1.playerPieces.getLast().rank+1);
+			p1.winner = true;
+			p2.turn = true;
+			p1.turn = false;
+			displayBoard();
+		} else {
+			p1.turn = true;
+			p2.turn = false;
+		}
 	}
 }

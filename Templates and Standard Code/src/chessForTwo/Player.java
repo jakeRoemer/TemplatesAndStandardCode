@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class Player {
 
-	private boolean turn = false;
+	public boolean turn = false;
 	public boolean color; //white or black
 	public boolean winner = false;
 	public int turnCount = 0;
@@ -13,6 +13,9 @@ public class Player {
 	
 	public Player(boolean color) {
 		this.color = color;
+		if (color) { //white goes first
+			turn = true;
+		}
 		playerPieces = new LinkedList<Piece>();
 		grabPieces(color);
 	}
