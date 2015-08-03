@@ -10,6 +10,9 @@ import javax.swing.JPanel;
 
 public class TurnGUI extends JFrame {
 	
+	public JLabel statusLabel;
+	public JLabel playerLabel;
+	
 	public TurnGUI() {
 		JFrame playingField = new JFrame();
 		playingField.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,14 +39,7 @@ public class TurnGUI extends JFrame {
 		p1.setLocation(0,0);
 		p1.setSize(50,30);
 		p1.setHorizontalAlignment(0);
-		p1.setVisible(true);
-		JLabel p2 = new JLabel("Black");
-		p2.setLocation(0,0);
-		p2.setSize(50,30);
-		p2.setHorizontalAlignment(0);
-		p2.setVisible(false);
 		playerPanel.add(p1);
-		playerPanel.add(p2);
 		//button panel to display board for piece movement
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLocation(10,30);
@@ -61,10 +57,9 @@ public class TurnGUI extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 						//switch player and relay information from button press
 						String [] position = e.getActionCommand().split(",");
-						Board.play(Integer.valueOf(position[1]), Integer.valueOf(position[0]));
-						System.out.println("rank: " + position[0]);
-						System.out.println("file: " + position[1]);
-						
+						String [] playerAndStatus = Board.play(Integer.valueOf(position[1]), Integer.valueOf(position[0])).split(":");
+						playerLabel.setText(playerAndStatus[0]);
+						statusLabel.setText(playerAndStatus[1]);
 					}
 				});
 				buttonPanel.add(squares[i*8+j]);
@@ -76,11 +71,10 @@ public class TurnGUI extends JFrame {
 		statusPanel.setSize(50, 30);
 		gui.add(statusPanel);
 		///status label for the actual text updates
-		JLabel statusLabel = new JLabel("Status: ");
+		statusLabel = new JLabel("Status: ");
 		statusLabel.setLocation(0,0);
 		statusLabel.setSize(50, 30);
 		statusLabel.setHorizontalAlignment(0);
-		statusLabel.setVisible(true);
 		statusPanel.add(statusLabel);
 		return gui;
 	}

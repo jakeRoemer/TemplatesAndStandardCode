@@ -47,11 +47,10 @@ public class Board {
 		}
 	}
 	
-	public static void play(int newFile, int newRank) {
+	public static String play(int newFile, int newRank) {
 		if (playerPiece != null) {
 			if (!playerPiece.move(newFile, newRank)) {
-				System.out.println("Piece can not move there");
-				return;
+				return white.turn ? "White" : "Black" + ":Piece can not move there";
 			}
 			playerPiece = null;
 			pickingPiece = true;
@@ -60,15 +59,13 @@ public class Board {
 				if (piecesOnBoard[newFile-1][newRank-1].color) {
 					playerPiece = piecesOnBoard[newFile-1][newRank-1];
 				} else {
-					System.out.println("Pieces can not move there");
-					return;
+					return white.turn ? "White" : "Black" + ":Piece can not move there";
 				}
 			} else {
 				if (!piecesOnBoard[newFile-1][newRank-1].color) {
 					playerPiece = piecesOnBoard[newFile-1][newRank-1];
 				} else {
-					System.out.println("Pieces can not move there");
-					return;
+					return white.turn ? "White" : "Black" + ":Piece can not move there";
 				}
 			}
 			pickingPiece = false;
@@ -81,5 +78,6 @@ public class Board {
 			white.turn = true;
 			black.turn = false;
 		}
+		return white.turn ? "White" : "Black" + ":Successful";
 	}
 }
