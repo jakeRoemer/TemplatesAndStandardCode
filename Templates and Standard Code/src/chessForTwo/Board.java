@@ -50,34 +50,36 @@ public class Board {
 	public static String play(int newFile, int newRank) {
 		if (playerPiece != null) {
 			if (!playerPiece.move(newFile, newRank)) {
-				return white.turn ? "White" : "Black" + ":Piece can not move there";
+				return (white.turn ? "White" : "Black") + ":Piece can not move there";
 			}
 			playerPiece = null;
 			pickingPiece = true;
 		} else {
 			if (white.turn) {
-				if (piecesOnBoard[newFile-1][newRank-1].color) {
+				if (piecesOnBoard[newFile-1][newRank-1] != null && piecesOnBoard[newFile-1][newRank-1].color) {
 					playerPiece = piecesOnBoard[newFile-1][newRank-1];
 				} else {
-					return white.turn ? "White" : "Black" + ":Piece can not move there";
+					return (white.turn ? "White" : "Black") + ":Piece can not move there";
 				}
 			} else {
-				if (!piecesOnBoard[newFile-1][newRank-1].color) {
+				if (piecesOnBoard[newFile-1][newRank-1] != null && !piecesOnBoard[newFile-1][newRank-1].color) {
 					playerPiece = piecesOnBoard[newFile-1][newRank-1];
 				} else {
-					return white.turn ? "White" : "Black" + ":Piece can not move there";
+					return (white.turn ? "White" : "Black") + ":Piece can not move there";
 				}
 			}
 			pickingPiece = false;
 		}
-		if (white.turn && !pickingPiece) {
+		if (white.turn && pickingPiece) {
 			white.turn = false;
 			black.turn = true;
-		} else if (black.turn && !pickingPiece){
+			displayBoard();
+		} else if (black.turn && pickingPiece){
 			black.winner = true;
 			white.turn = true;
 			black.turn = false;
+			displayBoard();
 		}
-		return white.turn ? "White" : "Black" + ":Successful";
+		return (white.turn ? "White" : "Black") + ":Successful";
 	}
 }

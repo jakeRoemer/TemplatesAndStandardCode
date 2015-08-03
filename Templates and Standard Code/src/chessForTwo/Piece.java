@@ -95,7 +95,7 @@ public abstract class Piece {
 
 		for (Piece[] pieces : Board.piecesOnBoard) {
 			for (Piece p : pieces) {
-				if (!p.boardName.equals("N")) {
+				if (p != null && !p.boardName.equals("N")) {
 
 				} else {
 					return true;

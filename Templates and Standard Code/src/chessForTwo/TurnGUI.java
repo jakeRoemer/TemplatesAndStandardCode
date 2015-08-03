@@ -35,11 +35,11 @@ public class TurnGUI extends JFrame {
 		gui.add(playerPanel);
 		//player label text to display on player panel
 		//only one player will be displayed at a time
-		JLabel p1 = new JLabel("White");
-		p1.setLocation(0,0);
-		p1.setSize(50,30);
-		p1.setHorizontalAlignment(0);
-		playerPanel.add(p1);
+		playerLabel = new JLabel("White");
+		playerLabel.setLocation(0,0);
+		playerLabel.setSize(50,30);
+		playerLabel.setHorizontalAlignment(0);
+		playerPanel.add(playerLabel);
 		//button panel to display board for piece movement
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLocation(10,30);
@@ -59,7 +59,7 @@ public class TurnGUI extends JFrame {
 						String [] position = e.getActionCommand().split(",");
 						String [] playerAndStatus = Board.play(Integer.valueOf(position[1]), Integer.valueOf(position[0])).split(":");
 						playerLabel.setText(playerAndStatus[0]);
-						statusLabel.setText(playerAndStatus[1]);
+						statusLabel.setText("Status: " + playerAndStatus[1]);
 					}
 				});
 				buttonPanel.add(squares[i*8+j]);
@@ -68,12 +68,12 @@ public class TurnGUI extends JFrame {
 		//status panel for updating player if piece is valid or if move is possible
 		JPanel statusPanel = new JPanel();
 		statusPanel.setLocation(10,280);
-		statusPanel.setSize(50, 30);
+		statusPanel.setSize(250, 30);
 		gui.add(statusPanel);
 		///status label for the actual text updates
 		statusLabel = new JLabel("Status: ");
 		statusLabel.setLocation(0,0);
-		statusLabel.setSize(50, 30);
+		statusLabel.setSize(250, 30);
 		statusLabel.setHorizontalAlignment(0);
 		statusPanel.add(statusLabel);
 		return gui;
