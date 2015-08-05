@@ -2,17 +2,17 @@ package sortingAlgorithms;
 
 public class ConcurrentMergeSort {
 	public static void main(String [] args) {
-		int [] totalSyncCount = new int[100];
-		createArray.randomizedIntArray(totalSyncCount,100);
-		for (int i = 0; i < totalSyncCount.length; i++) {
-			System.out.print(totalSyncCount[i] + " ");
+		int [] concurrentMergeArray = new int[100];
+		createArray.randomizedIntArray(concurrentMergeArray,100);
+		for (int i = 0; i < concurrentMergeArray.length; i++) {
+			System.out.print(concurrentMergeArray[i] + " ");
 		}
 		System.out.println();
-		Thread t = new Thread(new MergeThread(totalSyncCount, 0, totalSyncCount.length-1));
+		Thread t = new Thread(new MergeThread(concurrentMergeArray, 0, concurrentMergeArray.length-1));
 		t.start();
 		try { t.join(); } catch (InterruptedException e) { }
-		for (int i = 0; i < totalSyncCount.length; i++) {
-			System.out.print(totalSyncCount[i] + " ");
+		for (int i = 0; i < concurrentMergeArray.length; i++) {
+			System.out.print(concurrentMergeArray[i] + " ");
 		}
 		System.out.println();
 	}

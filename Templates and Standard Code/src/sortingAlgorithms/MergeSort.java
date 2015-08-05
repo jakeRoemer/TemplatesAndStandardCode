@@ -2,15 +2,15 @@ package sortingAlgorithms;
 
 public class MergeSort {
 	public static void main(String [] args) {
-		int [] totalSyncCount = new int[100];
-		createArray.randomizedIntArray(totalSyncCount,100);
-		for (int i = 0; i < totalSyncCount.length; i++) {
-			System.out.print(totalSyncCount[i] + " ");
+		int [] mergeArray = new int[100];
+		createArray.randomizedIntArray(mergeArray,100);
+		for (int i = 0; i < mergeArray.length; i++) {
+			System.out.print(mergeArray[i] + " ");
 		}
 		System.out.println();
-		mergeSort(totalSyncCount, 0, totalSyncCount.length-1);
-		for (int i = 0; i < totalSyncCount.length; i++) {
-			System.out.print(totalSyncCount[i] + " ");
+		mergeSort(mergeArray, 0, mergeArray.length-1);
+		for (int i = 0; i < mergeArray.length; i++) {
+			System.out.print(mergeArray[i] + " ");
 		}
 		System.out.println();
 	}

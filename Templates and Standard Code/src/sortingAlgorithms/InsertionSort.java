@@ -2,15 +2,15 @@ package sortingAlgorithms;
 
 public class InsertionSort {
 	public static void main(String [] args) {
-		int [] totalSyncCount = new int[5];
-		createArray.randomizedIntArray(totalSyncCount,100);
-		for (int i = 0; i < totalSyncCount.length; i++) {
-			System.out.print(totalSyncCount[i] + " ");
+		int [] insertionArray = new int[5];
+		createArray.randomizedIntArray(insertionArray,100);
+		for (int i = 0; i < insertionArray.length; i++) {
+			System.out.print(insertionArray[i] + " ");
 		}
 		System.out.println();
-		insertSort(totalSyncCount);
-		for (int i = 0; i < totalSyncCount.length; i++) {
-			System.out.print(totalSyncCount[i] + " ");
+		insertSort(insertionArray);
+		for (int i = 0; i < insertionArray.length; i++) {
+			System.out.print(insertionArray[i] + " ");
 		}
 		System.out.println();
 	}
