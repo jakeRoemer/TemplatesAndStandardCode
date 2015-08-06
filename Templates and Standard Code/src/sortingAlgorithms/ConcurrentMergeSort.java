@@ -2,15 +2,20 @@ package sortingAlgorithms;
 
 public class ConcurrentMergeSort {
 	public static void main(String [] args) {
-		int [] concurrentMergeArray = new int[100];
+		int [] concurrentMergeArray = new int[10000];
 		createArray.randomizedIntArray(concurrentMergeArray,100);
 		for (int i = 0; i < concurrentMergeArray.length; i++) {
 			System.out.print(concurrentMergeArray[i] + " ");
 		}
 		System.out.println();
+		long start = System.currentTimeMillis();
 		Thread t = new Thread(new MergeThread(concurrentMergeArray, 0, concurrentMergeArray.length-1));
 		t.start();
-		try { t.join(); } catch (InterruptedException e) { }
+		try { 
+			t.join();
+			long time = System.currentTimeMillis() - start;
+			System.out.println("time: " + time);
+		} catch (InterruptedException e) { }
 		for (int i = 0; i < concurrentMergeArray.length; i++) {
 			System.out.print(concurrentMergeArray[i] + " ");
 		}
