@@ -1,0 +1,9 @@
+Task Name -   Task Owner
+Files Affected
+Task Description
+Task Progress (NS = Not Started, IP = In Progress, COMP = Completed)
+
+Valid Move Method - JL
+Pieces.java
+Write logic for isOnBoard, isEmptyPath, isEmptySpace
+IP

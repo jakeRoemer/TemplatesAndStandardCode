@@ -1,3 +1,4 @@
+//hola
 package stuff;
 
 import java.io.BufferedReader;
@@ -11,11 +12,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
 
-import statistics.localRandom;
-
-public class JustStuff {
+public class JustStuff {	 
 	
-	localRandom rand = new localRandom(System.currentTimeMillis());
+//	localRandom rand = new localRandom(System.currentTimeMillis());
 	LinkedList<Integer> priorities = new LinkedList<Integer>();
 	
 	public static void main(String [] args) {
@@ -127,12 +126,12 @@ public class JustStuff {
 	
 	public class thread implements Runnable {
 		public void run() {
-			int priority = rand.nextInt(10);
-			while (priorities.contains(priority)) {
-				priority = rand.nextInt(10);
-			}
-			priorities.add(priority);
-			System.out.println(priority);
+//			int priority = rand.nextInt(10);
+//			while (priorities.contains(priority)) {
+//				priority = rand.nextInt(10);
+//			}
+//			priorities.add(priority);
+//			System.out.println(priority);
 		}
 	}
 }
