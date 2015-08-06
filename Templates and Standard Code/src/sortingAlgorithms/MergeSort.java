@@ -2,13 +2,16 @@ package sortingAlgorithms;
 
 public class MergeSort {
 	public static void main(String [] args) {
-		int [] mergeArray = new int[100];
+		int [] mergeArray = new int[10000];
 		createArray.randomizedIntArray(mergeArray,100);
 		for (int i = 0; i < mergeArray.length; i++) {
 			System.out.print(mergeArray[i] + " ");
 		}
 		System.out.println();
+		long start = System.currentTimeMillis();
 		mergeSort(mergeArray, 0, mergeArray.length-1);
+		long time = System.currentTimeMillis() - start;
+		System.out.println("time: " + time);
 		for (int i = 0; i < mergeArray.length; i++) {
 			System.out.print(mergeArray[i] + " ");
 		}
