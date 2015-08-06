@@ -22,7 +22,20 @@ public class JustStuff {
 		//testThreads();
 		//testRand();
 		//testInsertionSort();
-		System.out.println("max: " + testFileRead());
+		//System.out.println("max: " + testFileRead());
+		//testingLinkedList();
+		String s = "";
+		System.out.println(s.isEmpty());
+	}
+	
+	public static void testingLinkedList() {
+		LinkedList<Integer> significantValue = new LinkedList<Integer>();
+		significantValue.add(10);
+		significantValue.add(20);
+		significantValue.add(30);
+		System.out.println(significantValue.toString());
+		significantValue.remove(30);
+		System.out.println(significantValue.toString());
 	}
 	
 	public static int testFileRead() {

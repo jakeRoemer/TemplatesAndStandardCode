@@ -13,7 +13,7 @@ public class confidenceIntervals {
 		System.out.println("confidence level: " + aci.getConfidenceLevel());
 		System.out.println("lower bound: " + aci.getLowerBound());
 		System.out.println("upper bound: " + aci.getUpperBound());
-		ConfidenceInterval wsi = IntervalUtils.getWilsonScoreInterval(10, 9, 0.95);
+		ConfidenceInterval wsi = IntervalUtils.getWilsonScoreInterval(2, 0, 0.95);
 		System.out.println("confidence level: " + wsi.getConfidenceLevel());
 		System.out.println("lower bound: " + wsi.getLowerBound());
 		System.out.println("upper bound: " + wsi.getUpperBound());
