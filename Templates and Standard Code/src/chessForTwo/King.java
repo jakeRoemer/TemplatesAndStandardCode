@@ -35,4 +35,3 @@ public class King extends Piece {
 		setFile(5);
 	}
 }
-
