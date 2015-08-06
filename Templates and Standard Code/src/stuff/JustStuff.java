@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class JustStuff {
+	 
 	
 //	localRandom rand = new localRandom(System.currentTimeMillis());
 	LinkedList<Integer> priorities = new LinkedList<Integer>();
