@@ -2,7 +2,7 @@ package sortingAlgorithms;
 
 public class HeapSort {
 	
-	public static int heapSize = 0;
+	public static int heapSize = 0; 
 	
 	public static void main(String [] args) {
 		int [] heapArray = new int[5];
@@ -23,15 +23,15 @@ public class HeapSort {
 	
 	public static void heapSort(int [] heapArray, int start, int end) {
 		buildMaxHeap(heapArray);
-		for (int i = heapArray.length-1; i >= 1; i--) {
-			swap(heapArray, 0, i);
+		for (int i = end; i >= start; i--) {
+			swap(heapArray, start, i);
 			heapSize = heapSize - 1;
 			maxHeapify(heapArray, 0);
 		}
 	}
 	
 	public static void buildMaxHeap (int [] heapArray) {
-		heapSize = heapArray.length;
+		heapSize = heapArray.length-1;
 		for (int i = heapArray.length/2; i >= 0; i--) {
 			maxHeapify(heapArray, i);
 		}
