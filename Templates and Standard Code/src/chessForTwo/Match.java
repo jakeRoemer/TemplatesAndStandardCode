@@ -45,6 +45,7 @@ public class Match {
 				out.print("timer: " + p2.timer + " | ");
 				out.print("turns taken: " + p2.turnCount);
 			}
+			out.println();
 			out.close();
 			scan.close();
 		} catch (IOException e) {

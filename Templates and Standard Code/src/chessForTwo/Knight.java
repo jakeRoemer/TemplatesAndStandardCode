@@ -15,7 +15,7 @@ public class Knight extends Piece {
 		if ((Math.abs(getRank() - newRank) == 1 && Math.abs(getFile() - newFile) == 2)
 				|| (Math.abs(getRank() - newRank) == 2 && Math.abs(getFile() - newFile) == 1)) {
 			if (validMove(newFile, newRank)) {
-				updatePosition(this, newFile, newRank);
+				updatePosition(newFile, newRank);
 				return true; // must change pieces on board as well
 			}
 		}
@@ -26,14 +26,14 @@ public class Knight extends Piece {
 	@Override
 	public void startingPosition() {
 		if (color) {
-			setRank(1);
+			setRank(1-1); //-1 due to index
 		} else {
-			setRank(8);
+			setRank(8-1);
 		}
 		if (id == 1) {
-			setFile(2);
+			setFile(2-1);
 		} else {
-			setFile(7);
+			setFile(7-1);
 		}
 	}
 }

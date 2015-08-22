@@ -12,19 +12,22 @@ public class Pawn extends Piece {
 	@Override
 	public boolean move(int newFile, int newRank) {
 		if (color /* white */ && Math.abs(getFile() - newFile) == 0 && (validMove(newFile, newRank))) {
-			if (newRank == getRank() + 1 || (newRank == getRank() + 2 && getRank() == 2)) {
+			if (newRank == getRank() + 1 || (newRank == getRank() + 2 && getRank() == (2-1))) {
 				if (newRank == getRank() + 2) {
 					enPassant = true;
 				}
-				updatePosition(this, newFile, newRank);
+				updatePosition(newFile, newRank);
 				return true;
 			}
-		} else if (Math.abs(getFile() - newFile) == 0 && (validMove(newFile, newRank))) {
-			if (newRank == getRank() - 1 || (newRank == getRank() - 2 && getRank() == 7)) {
+		}
+		System.out.println("color: " + (color ? "white" : "black"));
+		System.out.println("valid move: " + validMove(newFile,newRank));
+		if (!color && Math.abs(getFile() - newFile) == 0 && (validMove(newFile, newRank))) {
+			if (newRank == getRank() - 1 || (newRank == getRank() - 2 && getRank() == (7-1))) {
 				if (newRank == getRank() - 2) {
 					enPassant = true;
 				}
-				updatePosition(this, newFile, newRank);
+				updatePosition(newFile, newRank);
 				return true;
 			}
 		}
@@ -36,10 +39,10 @@ public class Pawn extends Piece {
 	@Override
 	public void startingPosition() {
 		if (color) {
-			setRank(2);
+			setRank(2-1); //-1 due to index
 		} else {
-			setRank(7);
+			setRank(7-1);
 		}
-		setFile(id);
+		setFile(id-1);
 	}
 }

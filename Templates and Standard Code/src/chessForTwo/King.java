@@ -16,7 +16,7 @@ public class King extends Piece {
 		if (Math.abs(newFile - getFile()) <= 1) {
 			if (Math.abs(newRank - getRank()) <= 1) {
 				if (validMove(newFile, newRank)) {
-					updatePosition(this, newFile, newRank);
+					updatePosition(newFile, newRank);
 					return true;
 				}
 			}
@@ -28,10 +28,10 @@ public class King extends Piece {
 	@Override
 	public void startingPosition() {
 		if (color) {
-			setRank(1);
+			setRank(1-1); //-1 due to index
 		} else {
-			setRank(8);
+			setRank(8-1);
 		}
-		setFile(5);
+		setFile(5-1);
 	}
 }

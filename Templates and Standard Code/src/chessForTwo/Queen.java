@@ -17,7 +17,7 @@ public class Queen extends Piece {
 				|| (Math.abs(getRank() - newRank) > 0 && Math.abs(getFile() - newFile) == 0)
 				|| (Math.abs(getRank() - newRank) == 0 && Math.abs(getFile() - newFile) > 0)) {
 			if (validMove(newFile, newRank)) {
-				updatePosition(this, newFile, newRank);
+				updatePosition(newFile, newRank);
 				return true; // must change pieces on board as well
 			}
 		}
@@ -28,10 +28,10 @@ public class Queen extends Piece {
 	@Override
 	public void startingPosition() {
 		if (color) {
-			setRank(1);
+			setRank(1-1); //-1 due to index
 		} else {
-			setRank(8);
+			setRank(8-1);
 		}
-		setFile(4);
+		setFile(4-1);
 	}
 }

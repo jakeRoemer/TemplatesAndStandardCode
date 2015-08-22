@@ -57,7 +57,7 @@ public class TurnGUI extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 						//switch player and relay information from button press
 						String [] position = e.getActionCommand().split(",");
-						String [] playerAndStatus = Board.play(Integer.valueOf(position[1]), Integer.valueOf(position[0])).split(":");
+						String [] playerAndStatus = Board.play(Integer.valueOf(position[0])-1, Integer.valueOf(position[1])-1).split(":");
 						playerLabel.setText(playerAndStatus[0]);
 						statusLabel.setText("Status: " + playerAndStatus[1]);
 					}

@@ -23,10 +23,10 @@ public class Board {
 			}
 		}
 		for (Piece p : p1.playerPieces) {
-			piecesOnBoard[p.getRank()-1][p.getFile()-1] = p;
+			piecesOnBoard[p.getFile()][p.getRank()] = p;
 		}
 		for (Piece p : p2.playerPieces) {
-			piecesOnBoard[p.getRank()-1][p.getFile()-1] = p;
+			piecesOnBoard[p.getFile()][p.getRank()] = p;
 		}
 	}
 	
@@ -50,22 +50,24 @@ public class Board {
 	public static String play(int newFile, int newRank) {
 		if (playerPiece != null) {
 			if (!playerPiece.move(newFile, newRank)) {
-				return (white.turn ? "White" : "Black") + ":Piece can not move there";
+				playerPiece = null;
+				pickingPiece = true;
+				return (white.turn ? "White" : "Black") + ": Piece can not move there";
 			}
 			playerPiece = null;
 			pickingPiece = true;
 		} else {
 			if (white.turn) {
-				if (piecesOnBoard[newFile-1][newRank-1] != null && piecesOnBoard[newFile-1][newRank-1].color) {
-					playerPiece = piecesOnBoard[newFile-1][newRank-1];
+				if (piecesOnBoard[newFile][newRank] != null && piecesOnBoard[newFile][newRank].color) {
+					playerPiece = piecesOnBoard[newFile][newRank];
 				} else {
-					return (white.turn ? "White" : "Black") + ":Piece can not move there";
+					return (white.turn ? "White" : "Black") + ": Piece can not move there";
 				}
 			} else {
-				if (piecesOnBoard[newFile-1][newRank-1] != null && !piecesOnBoard[newFile-1][newRank-1].color) {
-					playerPiece = piecesOnBoard[newFile-1][newRank-1];
+				if (piecesOnBoard[newFile][newRank] != null && !piecesOnBoard[newFile][newRank].color) {
+					playerPiece = piecesOnBoard[newFile][newRank];
 				} else {
-					return (white.turn ? "White" : "Black") + ":Piece can not move there";
+					return (white.turn ? "White" : "Black") + ": Piece can not move there";
 				}
 			}
 			pickingPiece = false;
@@ -75,11 +77,10 @@ public class Board {
 			black.turn = true;
 			displayBoard();
 		} else if (black.turn && pickingPiece){
-			black.winner = true;
 			white.turn = true;
 			black.turn = false;
 			displayBoard();
 		}
-		return (white.turn ? "White" : "Black") + ":Successful";
+		return (white.turn ? "White" : "Black") + ": Successful";
 	}
 }

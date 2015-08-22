@@ -51,6 +51,8 @@ public abstract class Piece {
 	 * for capturing a piece.
 	 */
 	public boolean validMove(int newFile, int newRank) {
+		System.out.println(isEmptyPath(newFile,newRank));
+		System.out.println(isEmptySpace(newFile,newRank));
 		if (isOnBoard(newFile, newRank) && isEmptyPath(newFile, newRank) && isEmptySpace(newFile, newRank)) {
 			return true;
 		}
@@ -58,41 +60,40 @@ public abstract class Piece {
 	}
 
 	public boolean isOnBoard(int newFile, int newRank) {
-		if (newRank < 9 && newRank > 0 && newFile < 9 && newFile > 0) {
+		if (newRank < 8 && newRank >= 0 && newFile < 8 && newFile >= 0) {
 			return true;
 		}
 		return false;
 	}
 
 	public boolean isEmptyPath(int newFile, int newRank) {
-		if (newRank - Math.abs(getRank()) == Math.abs(newFile - getFile())) {
+		if (Math.abs(newRank - getRank()) == Math.abs(newFile - getFile())) { //diagonals have 4 directions
 			// condition met for diagonal movement
-			for (int i = getRank()+1; i < newRank; i++) {
-				if (Board.piecesOnBoard[rank + i - getRank()][i] != null) {
-					return true;
+			for (int i = 1; i < Math.abs(newFile-getFile())-1; i++) {
+				if (Board.piecesOnBoard[(getFile() < newFile) ? getFile()+i : getFile()-i][(getRank() < newRank) ? getRank()+i : getRank()-i] != null) {
+					return false;
 				}
 			}
-			return false;
+			return true;
 		}
-		if (newRank - Math.abs(getRank()) > 0 && Math.abs(newFile - getFile()) == 0) {
+		if (Math.abs(newRank - getRank()) > 0 && Math.abs(newFile - getFile()) == 0) {
 			// Condition met if movement in Rank Direction only
-			for (int i = getRank()+1; i < newRank; i++) {
-				if (Board.piecesOnBoard[i][getFile()] != null) {
-					return true;
+			for (int i = 1; i < Math.abs(newRank-getRank())-1; i++) {
+				if (Board.piecesOnBoard[getFile()][(getRank() < newRank) ? getRank()+i : getRank()-i] != null) {
+					return false;
 				}
 			}
-			return false;
+			return true;
 		}
-		if (newRank - Math.abs(getRank()) == 0 && Math.abs(newFile - getFile()) > 0) {
+		if (Math.abs(newRank - getRank()) == 0 && Math.abs(newFile - getFile()) > 0) {
 			// Condition met if movement in File Direction only
-			for (int i = getFile()+1; i < newFile; i++) {
-				if (Board.piecesOnBoard[getRank()][i] != null) {
-					return true;
+			for (int i = 1; i < Math.abs(newFile-getFile())-1; i++) {
+				if (Board.piecesOnBoard[(getFile() < newFile) ? getFile()+i : getFile()-i][getRank()] != null) {
+					return false;
 				}
 			}
-			return false;
+			return true;
 		}
-
 		for (Piece[] pieces : Board.piecesOnBoard) {
 			for (Piece p : pieces) {
 				if (p != null && !p.boardName.equals("N")) {
@@ -102,31 +103,32 @@ public abstract class Piece {
 				}
 			}
 		}
-		return false;
+		return true; //default should be true
 	}
 
+	// isCapturable method to determine if the Non-empty space
+	// contains an opposing players piece.
 	public boolean isEmptySpace(int newFile, int newRank) {
-		if (Board.piecesOnBoard[newRank - 1][newFile - 1] == null) {
+		if (Board.piecesOnBoard[newFile][newRank] == null) {
 			return true;
 		}
-
-		System.out.println("Piece may be capturable. Test not implimented yet.");
-		// TODO: write isCapturable method to determine if the Non-empty space
-		// contains an opposing players piece.
+		if (Board.piecesOnBoard[newFile][newRank].color != color) {
+			//need to determine winner here. If the piece that is about to be captured is a king then it is possible that a player is going to win.
+			//simply remove the piece that was there if it is of the opposing color
+			Board.piecesOnBoard[newFile][newRank].alive = false;
+			Board.piecesOnBoard[newFile][newRank] = null;
+			return true;
+		} 
 		return false;
-	}
-
-	/** Will update position of a piece on the board once it has moved */
-	public void updatePosition(Piece p, int newFile, int newRank) {
-		Board.piecesOnBoard[p.rank - 1][p.file - 1] = null;
-		p.setRank(newRank);
-		p.setFile(newFile);
-		Board.piecesOnBoard[p.rank - 1][p.file - 1] = p;
 	}
 
 	/** Will update position of a piece on the board once it has moved */
 	public void updatePosition(int newFile, int newRank) {
-
+		Board.piecesOnBoard[getFile()][getRank()] = null;
+		setRank(newRank);
+		setFile(newFile);
+		Board.piecesOnBoard[getFile()][getRank()] = this;
+		System.out.println(Board.piecesOnBoard[newFile][newRank].name);
 	}
 
 	/** Returns the state of the piece. Can be used to tally standing points. */
