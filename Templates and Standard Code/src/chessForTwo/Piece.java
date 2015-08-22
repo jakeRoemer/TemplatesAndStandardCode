@@ -9,6 +9,7 @@ public abstract class Piece {
 	public int file; // x
 	public int rank; // y
 	public int id;
+	public boolean captureAttempt = false;
 	// position is specified by first digit corresponding to vertical side of
 	// the board
 	// and the second digit corresponding to the horizontal side of the board
@@ -51,8 +52,6 @@ public abstract class Piece {
 	 * for capturing a piece.
 	 */
 	public boolean validMove(int newFile, int newRank) {
-		System.out.println(isEmptyPath(newFile,newRank));
-		System.out.println(isEmptySpace(newFile,newRank));
 		if (isOnBoard(newFile, newRank) && isEmptyPath(newFile, newRank) && isEmptySpace(newFile, newRank)) {
 			return true;
 		}
@@ -112,11 +111,17 @@ public abstract class Piece {
 		if (Board.piecesOnBoard[newFile][newRank] == null) {
 			return true;
 		}
+		if (boardName.equals("p") || boardName.equals("P")) {
+			if (Math.abs(newFile - getFile()) != Math.abs(newRank - getRank())) {
+				return false;
+			}
+		}
 		if (Board.piecesOnBoard[newFile][newRank].color != color) {
 			//need to determine winner here. If the piece that is about to be captured is a king then it is possible that a player is going to win.
 			//simply remove the piece that was there if it is of the opposing color
 			Board.piecesOnBoard[newFile][newRank].alive = false;
 			Board.piecesOnBoard[newFile][newRank] = null;
+			captureAttempt = true;
 			return true;
 		} 
 		return false;
@@ -128,7 +133,6 @@ public abstract class Piece {
 		setRank(newRank);
 		setFile(newFile);
 		Board.piecesOnBoard[getFile()][getRank()] = this;
-		System.out.println(Board.piecesOnBoard[newFile][newRank].name);
 	}
 
 	/** Returns the state of the piece. Can be used to tally standing points. */

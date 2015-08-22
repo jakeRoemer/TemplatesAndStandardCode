@@ -2,7 +2,7 @@ package chessForTwo;
 
 public class Pawn extends Piece {
 
-	public Boolean enPassant = false;
+	public boolean enPassant = false; 
 
 	public Pawn(boolean color, int identifier) {
 		super("Pawn" + identifier, color ? "P" : "p", color, identifier);
@@ -11,24 +11,28 @@ public class Pawn extends Piece {
 
 	@Override
 	public boolean move(int newFile, int newRank) {
-		if (color /* white */ && Math.abs(getFile() - newFile) == 0 && (validMove(newFile, newRank))) {
-			if (newRank == getRank() + 1 || (newRank == getRank() + 2 && getRank() == (2-1))) {
-				if (newRank == getRank() + 2) {
-					enPassant = true;
+		if (color /* white */ && validMove(newFile, newRank)) {
+			if (Math.abs(getFile() - newFile) == 0 || (captureAttempt && Math.abs(getFile() - newFile) == 1)) {
+				if (newRank == getRank() + 1 || (newRank == getRank() + 2 && getRank() == (2-1))) {
+					if (newRank == getRank() + 2) {
+						enPassant = true;
+					}
+					updatePosition(newFile, newRank);
+					captureAttempt = false;
+					return true;
 				}
-				updatePosition(newFile, newRank);
-				return true;
 			}
 		}
-		System.out.println("color: " + (color ? "white" : "black"));
-		System.out.println("valid move: " + validMove(newFile,newRank));
-		if (!color && Math.abs(getFile() - newFile) == 0 && (validMove(newFile, newRank))) {
-			if (newRank == getRank() - 1 || (newRank == getRank() - 2 && getRank() == (7-1))) {
-				if (newRank == getRank() - 2) {
-					enPassant = true;
+		if (!color && validMove(newFile, newRank) && Math.abs(getFile() - newFile) <= 1) {
+			if (Math.abs(getFile() - newFile) == 0 || (captureAttempt && Math.abs(getFile() - newFile) == 1)) {
+				if (newRank == getRank() - 1 || (newRank == getRank() - 2 && getRank() == (7-1))) {
+					if (newRank == getRank() - 2) {
+						enPassant = true;
+					}
+					updatePosition(newFile, newRank);
+					captureAttempt = false;
+					return true;
 				}
-				updatePosition(newFile, newRank);
-				return true;
 			}
 		}
 		System.out.println("Can not move piece there");
