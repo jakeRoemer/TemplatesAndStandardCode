@@ -10,7 +10,6 @@ public class Queen extends Piece {
 	@Override
 	public boolean move(int newFile, int newRank) {
 		if (getFile() == newFile && getRank() == newRank) {
-			System.out.println("Can not move piece there");
 			return false;
 		}
 		if (Math.abs(newFile - getFile()) == Math.abs(newRank - getRank())
@@ -21,7 +20,6 @@ public class Queen extends Piece {
 				return true; // must change pieces on board as well
 			}
 		}
-		System.out.println("Can not move piece there");
 		return false;
 	}
 

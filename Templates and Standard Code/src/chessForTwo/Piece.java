@@ -10,6 +10,7 @@ public abstract class Piece {
 	public int rank; // y
 	public int id;
 	public boolean captureAttempt = false;
+	public boolean checkMove = false;
 	// position is specified by first digit corresponding to vertical side of
 	// the board
 	// and the second digit corresponding to the horizontal side of the board
@@ -52,12 +53,13 @@ public abstract class Piece {
 	 * for capturing a piece.
 	 */
 	public boolean validMove(int newFile, int newRank) {
-		if (isOnBoard(newFile, newRank) && isEmptyPath(newFile, newRank) && isEmptySpace(newFile, newRank)) {
+		if (isOnBoard(newFile, newRank) && isEmptyPath(newFile, newRank) && isEmptySpace(newFile, newRank) && !kingInCheckAfter(newFile, newRank)) {
 			return true;
 		}
 		return false;
 	}
 
+	/** Any piece can check if a square (specified by newFile and newRank) is on the board or not*/
 	public boolean isOnBoard(int newFile, int newRank) {
 		if (newRank < 8 && newRank >= 0 && newFile < 8 && newFile >= 0) {
 			return true;
@@ -93,15 +95,6 @@ public abstract class Piece {
 			}
 			return true;
 		}
-		for (Piece[] pieces : Board.piecesOnBoard) {
-			for (Piece p : pieces) {
-				if (p != null && !p.boardName.equals("N")) {
-
-				} else {
-					return true;
-				}
-			}
-		}
 		return true; //default should be true
 	}
 
@@ -116,14 +109,29 @@ public abstract class Piece {
 				return false;
 			}
 		}
-		if (Board.piecesOnBoard[newFile][newRank].color != color) {
-			//need to determine winner here. If the piece that is about to be captured is a king then it is possible that a player is going to win.
-			//simply remove the piece that was there if it is of the opposing color
-			Board.piecesOnBoard[newFile][newRank].alive = false;
-			Board.piecesOnBoard[newFile][newRank] = null;
-			captureAttempt = true;
-			return true;
-		} 
+		if (!checkMove) {
+			if (Board.piecesOnBoard[newFile][newRank].color != color) {
+				Board.piecesOnBoard[newFile][newRank].alive = false;
+				Board.piecesOnBoard[newFile][newRank] = null;
+				captureAttempt = true;
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/** A piece can not move if the king will be in check after the movement. */
+	public boolean kingInCheckAfter(int newFile, int newRank) {
+		if (boardName.equals("K") || boardName.equals("k")) {
+			//make sure the king's movement does not put it in check
+			//might be a better way, but by always checking if king is in check after every turn will prevent 
+			//a piece from allowing the king to ever be in check unless it is checkmate 
+		}
+		if (color) {
+			//check if black pieces will check king
+		} else {
+			//check if white pieces will check king
+		}
 		return false;
 	}
 

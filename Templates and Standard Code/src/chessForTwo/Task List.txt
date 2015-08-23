@@ -3,7 +3,6 @@ Files Affected
 Task Description
 Task Progress (NS = Not Started, IP = In Progress, COMP = Completed)
 
-Valid Move Method - JL
-Pieces.java
-Write logic for isOnBoard, isEmptyPath, isEmptySpace
-IP
+kingInCheckAfter method, to make sure a piece moving (king or not) does not put the king in check -> NS
+checkWinner: Have to make sure that the king can not be saved by another piece sacrificing itself -> IP
+checkWinner: Have to make sure that the king can not capture a piece itself to stop it from being in check -> IP

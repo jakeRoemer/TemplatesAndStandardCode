@@ -76,11 +76,14 @@ public class Board {
 			white.turn = false;
 			black.turn = true;
 			displayBoard();
+			white.checkWinner(black);
 		} else if (black.turn && pickingPiece){
 			white.turn = true;
 			black.turn = false;
 			displayBoard();
+			black.checkWinner(white);
 		}
 		return (white.turn ? "White" : "Black") + ": Successful";
+		//maybe update status of movements, can later be logged
 	}
 }

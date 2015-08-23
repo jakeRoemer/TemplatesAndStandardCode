@@ -10,7 +10,6 @@ public class King extends Piece {
 	@Override
 	public boolean move(int newFile, int newRank) {
 		if (getFile() == newFile && getRank() == newRank) {
-			System.out.println("Can not move piece there");
 			return false;
 		}
 		if (Math.abs(newFile - getFile()) <= 1) {
@@ -21,7 +20,6 @@ public class King extends Piece {
 				}
 			}
 		}
-		System.out.println("Can not move piece there");
 		return false;
 	}
 

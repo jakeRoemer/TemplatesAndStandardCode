@@ -11,6 +11,9 @@ public class Pawn extends Piece {
 
 	@Override
 	public boolean move(int newFile, int newRank) {
+		if (getFile() == newFile && getRank() == newRank) {
+			return false;
+		}
 		if (color /* white */ && validMove(newFile, newRank)) {
 			if (Math.abs(getFile() - newFile) == 0 || (captureAttempt && Math.abs(getFile() - newFile) == 1)) {
 				if (newRank == getRank() + 1 || (newRank == getRank() + 2 && getRank() == (2-1))) {
@@ -35,9 +38,7 @@ public class Pawn extends Piece {
 				}
 			}
 		}
-		System.out.println("Can not move piece there");
 		return false;
-
 	}
 
 	@Override

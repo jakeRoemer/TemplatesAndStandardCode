@@ -11,7 +11,9 @@ public class Knight extends Piece {
 	public boolean move(int newFile, int newRank) {
 		// Knight can move 2 rank if file moves 1, and can move 1 rank if file
 		// moves 2
-
+		if (getFile() == newFile && getRank() == newRank) {
+			return false;
+		}
 		if ((Math.abs(getRank() - newRank) == 1 && Math.abs(getFile() - newFile) == 2)
 				|| (Math.abs(getRank() - newRank) == 2 && Math.abs(getFile() - newFile) == 1)) {
 			if (validMove(newFile, newRank)) {
@@ -19,7 +21,6 @@ public class Knight extends Piece {
 				return true; // must change pieces on board as well
 			}
 		}
-		System.out.println("Can not move piece there");
 		return false;
 	}
 

@@ -22,6 +22,7 @@ public class Match {
 			}
 		});
 		while (!p1.winner && !p2.winner) {}
+		System.out.println("Checkmate!!!");
 		if (p1.winner) {
 			System.out.println("Player 1 is the winner");
 		} else {

@@ -9,6 +9,9 @@ public class Rook extends Piece {
 
 	@Override
 	public boolean move(int newFile, int newRank) {
+		if (getFile() == newFile && getRank() == newRank) {
+			return false;
+		}
 		if ((Math.abs(getRank() - newRank) > 0 && Math.abs(getFile() - newFile) == 0)
 				|| (Math.abs(getRank() - newRank) == 0 && Math.abs(getFile() - newFile) > 0)) {
 			if (validMove(newFile, newRank)) {
@@ -16,7 +19,6 @@ public class Rook extends Piece {
 				return true; // must change pieces on board as well
 			}
 		}
-		System.out.println("Can not move piece there");
 		return false;
 	}
 

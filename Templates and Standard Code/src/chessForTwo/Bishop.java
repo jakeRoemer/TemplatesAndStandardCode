@@ -9,13 +9,15 @@ public class Bishop extends Piece {
 
 	@Override
 	public boolean move(int newFile, int newRank) {
+		if (getFile() == newFile && getRank() == newRank) {
+			return false;
+		}
 		if ((Math.abs(getRank() - newRank) == Math.abs(getFile() - newFile))) {
 			if (validMove(newFile, newRank)) {
 				updatePosition(newFile, newRank);
 				return true; // must change pieces on board as well
 			}
 		}
-		System.out.println("Can not move piece there");
 		return false;
 
 	}
