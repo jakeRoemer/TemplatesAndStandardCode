@@ -9,6 +9,9 @@ public class Player {
 	public boolean winner = false;
 	public int turnCount = 0;
 	public long timer = 0;
+	public long turnStartTime = -1;
+	//timer might not be exact due to checks and such made as part of the program. 
+	//If the checks don't take too much time then it shouldn't really make a difference. Only a couple of nano seconds a turn.
 	public LinkedList<Piece> playerPieces;
 	
 	public Player(boolean color) {

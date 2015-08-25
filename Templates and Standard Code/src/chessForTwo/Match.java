@@ -40,10 +40,10 @@ public class Match {
 			System.out.println("Winner enter name: ");
 			out.print(scan.nextLine() + "-> ");
 			if (p1.winner) {
-				out.print("timer: " + p1.timer + " | ");
+				timeFormatter(out, p1.timer);
 				out.print("turns taken: " + p1.turnCount);
 			} else {
-				out.print("timer: " + p2.timer + " | ");
+				timeFormatter(out, p2.timer);
 				out.print("turns taken: " + p2.turnCount);
 			}
 			out.println();
@@ -52,5 +52,21 @@ public class Match {
 		} catch (IOException e) {
 			System.out.println("score board can not be opened.");
 		}
+	}
+	
+	//could add formatter to timer since it is all in milliseconds
+	//can not handle more than hours worth of time
+	public static void timeFormatter(PrintWriter out, long time) {
+		time = time/1000; //put it into seconds
+		out.print("timer: ");
+		if (time/3600 > 0) {
+			out.print(time/3600 + "hours ");
+			time = time%3600;
+		}
+		if (time/60 > 0) {
+			out.print(time/60 + "minutes ");
+			time = time%60;
+		}
+		out.print(time + "seconds | ");
 	}
 }

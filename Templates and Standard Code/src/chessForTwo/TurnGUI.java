@@ -35,6 +35,7 @@ public class TurnGUI extends JFrame {
 		gui.add(playerPanel);
 		//player label text to display on player panel
 		//only one player will be displayed at a time
+		//white always goes first
 		playerLabel = new JLabel("White");
 		playerLabel.setLocation(0,0);
 		playerLabel.setSize(50,30);
@@ -56,10 +57,12 @@ public class TurnGUI extends JFrame {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						//switch player and relay information from button press
-						String [] position = e.getActionCommand().split(",");
-						String [] playerAndStatus = Board.play(Integer.valueOf(position[0])-1, Integer.valueOf(position[1])-1).split(":");
-						playerLabel.setText(playerAndStatus[0]);
-						statusLabel.setText("Status: " + playerAndStatus[1]);
+						if (!Board.white.winner && !Board.black.winner) { //if no one has won, continue asking to play
+							String [] position = e.getActionCommand().split(",");
+							String [] playerAndStatus = Board.play(Integer.valueOf(position[0])-1, Integer.valueOf(position[1])-1).split(":");
+							playerLabel.setText(playerAndStatus[0]);
+							statusLabel.setText("Status: " + playerAndStatus[1]);
+						}
 					}
 				});
 				buttonPanel.add(squares[i*8+j]);

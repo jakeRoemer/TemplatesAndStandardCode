@@ -48,6 +48,9 @@ public class Board {
 	}
 	
 	public static String play(int newFile, int newRank) {
+		if (white.turnStartTime == -1) { //start the timer when the first turn starts
+			white.turnStartTime = System.currentTimeMillis();
+		}
 		if (playerPiece != null) {
 			if (!playerPiece.move(newFile, newRank)) {
 				playerPiece = null;
@@ -73,15 +76,21 @@ public class Board {
 			pickingPiece = false;
 		}
 		if (white.turn && pickingPiece) {
+			white.timer = System.currentTimeMillis() - white.turnStartTime;
 			white.turn = false;
 			black.turn = true;
+			white.turnCount++; //white took a turn
 			displayBoard(); //white just made a move, check if white wins
 			white.checkWinner(black);
+			black.turnStartTime = System.currentTimeMillis();
 		} else if (black.turn && pickingPiece){
+			black.timer = System.currentTimeMillis() - black.turnStartTime;
 			white.turn = true;
 			black.turn = false;
+			black.turnCount++; //black took a turn
 			displayBoard(); //black just made a move, check if black wins
 			black.checkWinner(white);
+			white.turnStartTime = System.currentTimeMillis();
 		}
 		return (white.turn ? "White" : "Black") + ": Successful";
 		//maybe update status of movements, can later be logged
