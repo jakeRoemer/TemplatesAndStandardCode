@@ -122,16 +122,42 @@ public abstract class Piece {
 	
 	/** A piece can not move if the king will be in check after the movement. */
 	public boolean kingInCheckAfter(int newFile, int newRank) {
-		if (boardName.equals("K") || boardName.equals("k")) {
-			//make sure the king's movement does not put it in check
-			//might be a better way, but by always checking if king is in check after every turn will prevent 
-			//a piece from allowing the king to ever be in check unless it is checkmate 
-		}
+		//might be a better way, but by always checking if king is in check after every turn will prevent 
+		//a piece from allowing the king to ever be in check unless it is checkmate
+		//must simulate moving the piece
+		int oldFile = getFile();
+		int oldRank = getRank();
+		setFile(newFile);
+		setRank(newRank);
 		if (color) {
-			//check if black pieces will check king
+			//check if black pieces will check your king
+			Piece whiteKing = Board.white.playerPieces.get(0);
+			for (Piece p : Board.black.playerPieces) {
+				p.checkMove = true;
+				if (p.move(whiteKing.getFile(), whiteKing.getRank())) {
+					setFile(oldFile);
+					setRank(oldRank);
+					p.checkMove = false;
+					return true;
+				}
+				p.checkMove = false;
+			}
 		} else {
 			//check if white pieces will check king
+			Piece blackKing = Board.black.playerPieces.get(0);
+			for (Piece p : Board.white.playerPieces) {
+				p.checkMove = true;
+				if (p.move(blackKing.getFile(), blackKing.getRank())) {
+					setFile(oldFile);
+					setRank(oldRank);
+					p.checkMove = false;
+					return true;
+				}
+				p.checkMove = false;
+			}
 		}
+		setFile(oldFile);
+		setRank(oldRank);
 		return false;
 	}
 

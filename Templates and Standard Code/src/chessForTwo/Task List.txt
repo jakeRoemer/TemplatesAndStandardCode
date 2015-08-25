@@ -3,6 +3,12 @@ Files Affected
 Task Description
 Task Progress (NS = Not Started, IP = In Progress, COMP = Completed)
 
-kingInCheckAfter method, to make sure a piece moving (king or not) does not put the king in check -> NS
-checkWinner: Have to make sure that the king can not be saved by another piece sacrificing itself -> IP
-checkWinner: Have to make sure that the king can not capture a piece itself to stop it from being in check -> IP
+To check checkmate condition: [Completed]
+	Only squares that are potentially available to the king for movement are considered.
+	A square is conquerable if it exists (on the board) and is not occupied by a piece of the player color. 
+	A square which is conquerable must also be impossible for any player piece to move to (except the king).
+	A king must not be able to conqure an opponent piece to free itself from check. The movement check prevents the king from also putting itself into check.
+	A piece that would move to protect the king must not be able to expose the king. This is true due to the check during attempted movement. [As in. A check for 
+
+To make sure the king is not put into check due to a movement: [Completed]
+	All opponent pieces must be checked for capturability of player king. If true, then the move can not be made. True for all pieces including the king.

@@ -38,28 +38,60 @@ public class Player {
 	 * Must check the piece that is attempting to take the king isn't capturable or that is the only available move next turn
 	 * TODO: handle restricting movements based on possibility of check or such
 	 * */
-	public void checkWinner(Player opponent) {
+	public void checkWinner(Player opponent) { //checking if after a move is made, you checkmate the opponent
 		//Must check if king is in check and if all surrounding available squares are in check
 		//Therefore, each square surrounding the king and the square the king exists on itself is checked for capturability and existence
-		Piece king = playerPieces.get(0);
+		Piece king = opponent.playerPieces.get(0);
 		boolean freeSpace;
 		boolean winCondition = true;
+		//check all squares surrounding opponent's king for conquerability
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
+				//check if square is on board
 				if (king.isOnBoard(king.getFile()+i,king.getRank()+j)) {
 					freeSpace = true; //assume space is free
-					for (Piece p : opponent.playerPieces) {
+					for (Piece p : playerPieces) {
 						if (p.isAlive()) {
+							king.checkMove = true;
+							//check if opponent can capture your piece and not be in check
+							if (p.getFile() == king.getFile()+i && p.getRank() == king.getRank()+j && king.move(king.getFile()+i, king.getRank()+j)) {
+								winCondition = false;
+								king.checkMove = false;
+								break; //king can capture a piece and escape check so checkmate couldn't happen
+							}
 							p.checkMove = true;
+							//check if a piece is able to capture a square on or around the king
 							if (p.move(king.getFile()+i, king.getRank()+j)) {
-								System.out.println("piece: " + p.name);
+								for (Piece opponentPiece : opponent.playerPieces) {
+									opponentPiece.checkMove = true;
+									if (opponentPiece.move(king.getFile()+i, king.getRank()+j)) {
+										winCondition = false;
+										opponentPiece.checkMove = false;
+										break; //a piece can stop the king from being in check so checkmate couldn't happen
+										//if a piece can move to a conquerable square and the king is not in check after then the king can not be in checkmate
+									}
+									opponentPiece.checkMove = false;
+								}
 								freeSpace = false;
+								
 							}
 							p.checkMove = false;
 						}
 					}
+					//space is not conqurable by a piece, but could still be occupied by a friendly piece
 					if (freeSpace) {
 						winCondition = false;
+						for (Piece opponentPiece : opponent.playerPieces) {
+							if (!opponentPiece.name.equals("King") && opponentPiece.getFile() == king.getFile()+i && opponentPiece.getRank() == king.getRank()+j) {
+								winCondition = true; //if a square is not conquerable, but a player piece occupies it then it is not free for the king to move to
+								//therefore, nothing can be said since the space is not free
+								//so even if no piece can move there the king is also not free to move there and no other piece can capture that piece
+							}
+						}
+						//it is true that the square is actually free
+						if (!winCondition) {
+							break; //a space exists that the king could escape to so checkmate couldn't happen
+						}
 					}
 				}
 			}
@@ -67,7 +99,5 @@ public class Player {
 		if (winCondition) {
 			opponent.winner = true;
 		}
-		//Have to make sure that the king can not be saved by another piece sacrificing itself
-		//Have to make sure that the king can not capture a piece itself to stop it from being in check
 	}
 }

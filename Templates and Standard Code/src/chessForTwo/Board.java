@@ -75,12 +75,12 @@ public class Board {
 		if (white.turn && pickingPiece) {
 			white.turn = false;
 			black.turn = true;
-			displayBoard();
+			displayBoard(); //white just made a move, check if white wins
 			white.checkWinner(black);
 		} else if (black.turn && pickingPiece){
 			white.turn = true;
 			black.turn = false;
-			displayBoard();
+			displayBoard(); //black just made a move, check if black wins
 			black.checkWinner(white);
 		}
 		return (white.turn ? "White" : "Black") + ": Successful";
